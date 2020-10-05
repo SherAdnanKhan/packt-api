@@ -1,0 +1,47 @@
+FROM php:7.4-fpm
+
+WORKDIR /var/www/html
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    zip \
+    cron \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install extensions
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install pcntl
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Create the scheduler log file
+RUN touch /var/log/schedule.log
+RUN chmod 0777 /var/log/schedule.log
+
+# Add crontab file in the cron directory
+ADD scheduler /etc/cron.d/scheduler
+
+# Apply the cron
+RUN crontab /etc/cron.d/scheduler
+
+# Setup the entry point
+RUN mkdir /app
+COPY entrypoint.sh /app
+RUN chmod u+x /app/entrypoint.sh
+
+EXPOSE 9000
+
+ENTRYPOINT ["/app/entrypoint.sh"]

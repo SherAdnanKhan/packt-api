@@ -1,0 +1,51 @@
+version: '3'
+
+networks:
+  packt-api:
+
+services:
+  site:
+    image: nginx:stable-alpine
+    container_name: packt-api-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - packt-api
+
+  mysql:
+    image: mysql:5.7.29
+    container_name: packt-api-mysql
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: packt-api
+      MYSQL_USER: packt-api
+      MYSQL_PASSWORD: packt-api
+      MYSQL_ROOT_PASSWORD: packt-api
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - packt-api
+
+  php:
+    build:
+      context: ./php-app/
+      dockerfile: Dockerfile
+    container_name: packt-api-php
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - packt-api
+   
