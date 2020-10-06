@@ -14,29 +14,25 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - php
-      - mysql
+      - db
     networks:
       - packt-api
 
-  mysql:
-    image: mysql:5.7.29
-    container_name: packt-api-mysql
+  db:
+    image: postgres:11
+    container_name: packt-api-db
     restart: unless-stopped
-    tty: true
-    volumes:
-      - ./data/mysql:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - 5432:5432/tcp
     environment:
-      MYSQL_DATABASE: packt-api
-      MYSQL_USER: packt-api
-      MYSQL_PASSWORD: packt-api
-      MYSQL_ROOT_PASSWORD: packt-api
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      POSTGRES_USER: packt-api
+      POSTGRES_PASSWORD: packt-api
+      POSTGRES_DB: packt-api
+    volumes:
+      - ./data/pg:/var/lib/postgresql/data
     networks:
       - packt-api
-
+    
   php:
     build:
       context: ./php-app/
