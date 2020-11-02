@@ -3,6 +3,8 @@
 # Overcome permission issues when building this project
 sudo chmod -R a+rw data/
 sudo chmod -R a+rw src/storage
+sudo chmod -R a+rw src/bootstrap/cache
+
 
 # Build docker images
 docker-compose build
