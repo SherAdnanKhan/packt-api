@@ -22,8 +22,20 @@ class Product extends JsonResource
             'title' => $this->resource['summary']['title'],
             'tagline' => $this->resource['summary']['oneLiner'],
             'description' => $this->resource['summary']['about'],
-            'images' => $this->resource['images'],
+            'images' => $this->getImagePaths(),
             'meta' => $this->resource['summary']['meta']
         ];
+    }
+
+    private function getImagePaths(){
+
+        $images = [];
+
+        foreach($this->resource['images'] as $size => $image){
+            $images[$size] = $image['url'];
+        }
+
+        return $images;
+
     }
 }

@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1'], function(){
+
    Route::get('/user', function(Request $request) {
        return $request->user();
    });
+
    Route::apiResource('product', ProductController::class);
 });
 
