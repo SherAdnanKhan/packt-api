@@ -27,9 +27,22 @@ abstract class HttpService
         $this->uri = $uri;
     }
 
-    protected function get(string $uri)
+    /**
+     * @param string $uri
+     * @param array|null $params
+     * @param string $type
+     * @return \Illuminate\Http\Client\Response
+     * @throws \Illuminate\Http\Client\RequestException
+     */
+    protected function process(string $uri, array $params = [], $type = 'get')
     {
-        $response = Http::retry(5, 100)->get($this->uri . $uri)->throw();
-        return $response;
+        return Http::retry(5, 100)->
+        {$type}($this->uri . $uri, $params)
+            ->throw();
+    }
+
+    protected function post(string $uri)
+    {
+        return Http::retry(5, 100)->post($this->uri.$uri)->throw();
     }
 }

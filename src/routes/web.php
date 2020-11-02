@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Livewire\Docs;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/docs', [Docs::class, 'render'])->name('docs');
+
     Route::get('/doc-overview', function(){
         return view('docs');
     });
+
+    Route::get('/cover/{sku}/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+
 });
 
