@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Product;
 use App\Services\Api\ProductHttpService;
+use App\Traits\LogTrait;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -14,6 +15,8 @@ use Illuminate\Http\Response;
 class ProductController extends Controller
 {
 
+    use LogTrait;
+
     /**
      * @param $product
      * @param ProductHttpService $productService
@@ -23,6 +26,7 @@ class ProductController extends Controller
     public function show($product, ProductHttpService $productService, Request $request)
     {
         try {
+            $this->logInfo('info', 'User has access Product API', $request);
             return $productService->getProductInfo($product);
         } catch (\Exception $e) {
             return response()->json(
