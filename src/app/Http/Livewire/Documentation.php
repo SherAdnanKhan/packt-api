@@ -18,10 +18,21 @@ use Livewire\Component;
 
 class Documentation extends Component
 {
-    public function render(Markdown $markdown)
+
+    public $route;
+
+
+    public function render( Markdown $markdown, $route = 'introduction')
     {
+        $this->route = $route;
+
+        $document = $this->getHtmlFromMarkdown($markdown);
+
+        return view('livewire.documentation')->with('content', $document);
+    }
 
 
+    private function getHtmlFromMarkdown($markdown){
         $environment = Environment::createCommonMarkEnvironment();
 
         $environment->addExtension(new TableExtension);
@@ -35,8 +46,9 @@ class Documentation extends Component
             'allow_unsafe_links' => false,
         ], $environment);
 
-        $document = new HtmlString($converter->convertToHtml(File::get('products.md')));
-        return view('livewire.documentation')->with('content', $document);
+        return  new HtmlString($converter->convertToHtml(
+            File::get('documentation/'.$this->route.'.md')
+        ));
     }
 
 }
