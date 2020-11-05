@@ -6,6 +6,8 @@ Abide by our general Terms and Conditions [https://www.packtpub.com/about/terms-
 
 * Not try to circumvent our rate limiting. Packt tracks all requests made by developers.
 
+* Do not share or publically post your API key with others outside your organisation.
+
 * Clearly display the Packt name or logo on any location where Packt data appears. For instance if you are displaying a Packt product, you should clearly label this as "by Packt Publishing"
 
 * Not use the API to harvest or index Packt data without our explicit written consent.
