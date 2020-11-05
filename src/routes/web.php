@@ -29,6 +29,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
 
+    Route::get('/dashboard', function(){
+        return view('dashboard');
+    })->name('dashboard');
+
     Route::get('/doc-overview', function(){
         return view('docs');
     });
