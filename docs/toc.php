@@ -41,5 +41,21 @@ foreach ($array_ToC as $heading) {
     }
 
 }
-//print_r($array_ToC);
+
+// all markdown files
+$files = array();
+
+$dir = new DirectoryIterator(dirname('.'));
+foreach ($dir as $fileinfo) {
+
+    // check if the filename ends with .md - why is there no endsWith in PHP?
+    if (substr( $fileinfo->getFilename(), strlen( $fileinfo->getFilename() ) - strlen( '.md' ) ) == '.md' ) {
+        $files[] = $fileinfo->getFilename();
+    }
+}
+
+//sort
+natsort($files);
+
+print_r($files);
 //echo $string_body;
