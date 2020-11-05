@@ -24,37 +24,37 @@
                                 class="px-6 pt-6 mt-10 overflow-y-auto text-base lg:text-sm lg:py-0 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
 
 
-                                <div class="mb-10">
-                                    <a href=""
-                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-gray-900">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-500">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span class="ml-3">Overview</span>
-                                    </a>
-                                    <a
-                                        href=""
-                                        class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span class="ml-3">Packt Product API</span>
-                                    </a>
-                                    <a href="/course"
-                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span class="ml-3">FAQ's</span>
-                                    </a>
-                                    <a href="https://blog.tailwindcss.com"
-                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                        </svg>
-                                        <span class="ml-3">Reference</span>
-                                    </a>
-                                </div>
+{{--                                <div class="mb-10">--}}
+{{--                                    <a href="/docs"--}}
+{{--                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-gray-900">--}}
+{{--                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-500">--}}
+{{--                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
+{{--                                        </svg>--}}
+{{--                                        <span class="ml-3">Overview</span>--}}
+{{--                                    </a>--}}
+{{--                                    <a--}}
+{{--                                        href=""--}}
+{{--                                        class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">--}}
+{{--                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">--}}
+{{--                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
+{{--                                        </svg>--}}
+{{--                                        <span class="ml-3">Packt Product API</span>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="/course"--}}
+{{--                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">--}}
+{{--                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">--}}
+{{--                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
+{{--                                        </svg>--}}
+{{--                                        <span class="ml-3">FAQ's</span>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="https://blog.tailwindcss.com"--}}
+{{--                                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium mt-3 lg:mt-1 text-gray-600">--}}
+{{--                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"  class="w-4 h-4 stroke-current text-orange-300 hover:text-orange-500">--}}
+{{--                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
+{{--                                        </svg>--}}
+{{--                                        <span class="ml-3">Reference</span>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
                                 <div class="mb-8">
                                     <h5 class="mb-3 lg:mb-2 uppercase tracking-wide font-bold text-sm lg:text-xs text-gray-500">
@@ -62,39 +62,19 @@
                                     <ul>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#environments"
+                                                href="/docs/"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
                                                 title="API environments"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">Environments</span>
+                                                <span class="relative">Introduction</span>
                                             </a>
                                         </li>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#format"
+                                                href="/docs/accesspermissions"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
-                                                title="API Formatting"
-                                            >
-                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">Format</span>
-                                            </a>
-                                        </li>
-                                        <li class="mb-3 lg:mb-1">
-                                            <a
-                                                href="/docs/#errors"
-                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
-                                                title="Error Handling"
-                                            >
-                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">Error Handling</span>
-                                            </a>
-                                        </li>
-                                        <li class="mb-3 lg:mb-1">
-                                            <a
-                                                href="/docs/#authentication"
-                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
-                                                title="Authentication"
+                                                title="API environments"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
                                                 <span class="relative">Authentication</span>
@@ -102,12 +82,42 @@
                                         </li>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#callbacks"
+                                                href="/docs/ratelimiting"
+                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
+                                                title="API Formatting"
+                                            >
+                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
+                                                <span class="relative">Rate Limiting</span>
+                                            </a>
+                                        </li>
+                                        <li class="mb-3 lg:mb-1">
+                                            <a
+                                                href="/docs/callback"
+                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
+                                                title="Error Handling"
+                                            >
+                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
+                                                <span class="relative">Callbacks</span>
+                                            </a>
+                                        </li>
+                                        <li class="mb-3 lg:mb-1">
+                                            <a
+                                                href="/docs/faq"
+                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
+                                                title="Authentication"
+                                            >
+                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
+                                                <span class="relative">FAQ's</span>
+                                            </a>
+                                        </li>
+                                        <li class="mb-3 lg:mb-1">
+                                            <a
+                                                href="/docs/terms"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
                                                 title="Callback"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">Callbacks</span>
+                                                <span class="relative">Terms & Conditons</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -119,42 +129,47 @@
                                     <ul>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#environments"
+                                                href="/docs/api-products"
+                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
+                                                title="Overview"
+                                            >
+                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
+                                                <span class="relative">Overview</span>
+                                            </a>
+                                        </li><li class="mb-3 lg:mb-1">
+                                            <a
+                                                href="/docs/api-products#get-a-product"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
                                                 title="GET API"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">GET API</span>
+                                                <span class="relative"><small class="inline-block border border-blue rounded py-0 px-2 bg-orange-500 text-white">GET</small> Get A Product</span>
                                             </a>
                                         </li>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#format"
+                                                href="/docs/api-products#list-products"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
                                                 title="PUT API"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">PUT API</span>
+                                                <span class="relative"><small class="inline-block border border-blue rounded py-0 px-2 bg-orange-500 text-white">GET</small> List Products</span>
                                             </a>
                                         </li>
+                                    </ul>
+                                </div>
+                                <div class="mb-8">
+                                    <h5 class="mb-3 lg:mb-2 uppercase tracking-wide font-bold text-sm lg:text-xs text-gray-500">
+                                        Packt Content API</h5>
+                                    <ul>
                                         <li class="mb-3 lg:mb-1">
                                             <a
-                                                href="/docs/#errors"
+                                                href="/docs/api-products"
                                                 class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
-                                                title="POST API"
+                                                title="Overview"
                                             >
                                                 <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">POST API</span>
-                                            </a>
-                                        </li>
-                                        <li class="mb-3 lg:mb-1">
-                                            <a
-                                                href="/docs/#authentication"
-                                                class="transition duration-200 ease-in-out relative block hover:translate-x-2px hover:text-gray-900 text-gray-600 font-medium"
-                                                title="DELETE"
-                                            >
-                                                <span class="rounded absolute inset-0 bg-teal-200 opacity-0"></span>
-                                                <span class="relative">DELETE</span>
+                                                <span class="relative">Overview</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -170,7 +185,6 @@
                                 <div class="pb-16 w-full pt-12 lg:pt-5">
                                     <div class="markdown mb-6 px-6 max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4">
                                         <div class="items-center markdown-body">
-                                            <h1 class="text-4xl">Overview</h1>
                                             {{ $content }}
                                         </div>
                                     </div>

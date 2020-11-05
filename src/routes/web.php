@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/docs', [Documentation::class, 'render'])->name('documentation');
+Route::get('/docs/{route?}', [Documentation::class, 'render'])->name('documentation');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
