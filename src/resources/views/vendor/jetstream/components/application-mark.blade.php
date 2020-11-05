@@ -1,1 +1,1 @@
-<img src="https://www.packtpub.com/media/logo/default/logo.png" width="100"/>
+<img src="/img/logo.png" width="100"/>
