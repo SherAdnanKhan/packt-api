@@ -15,5 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
-    ])
+    ]).copy('resources/documentation', 'public/documentation')
     .webpackConfig(require('./webpack.config'));

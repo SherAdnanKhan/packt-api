@@ -12,3 +12,30 @@
 .heading-permalink {
     position:absolute; visibility: hidden
 }
+
+#navWrapper h1 {
+    @apply .text-gray-900 .text-xl  .underline;
+}
+
+#navWrapper ul li p:first-child{
+    @apply .text-gray-900 .text-xl .mt-3;
+}
+
+#navWrapper ul li a {
+    @apply .text-orange-500;
+}
+
+#navWrapper ul li a:before {
+    display:inline-block;
+    content: ' ';
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='stroke-current fill-current bg-orange-400 text-orange-500' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 5l7 7-7 7' /%3E%3C/svg%3E");
+    background-size: 14px 16px;
+    background-repeat: no-repeat;
+    height: 13px;
+    width: 15px;
+    @apply .text-orange-500;
+}
+
+#navWrapper ul li ul li{
+    @apply py-1;
+}
