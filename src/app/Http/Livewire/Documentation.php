@@ -26,7 +26,7 @@ class Documentation extends Component
     {
         $this->route = $route;
 
-        $document = $this->getHtmlFromMarkdown($markdown);
+                $document = $this->getHtmlFromMarkdown($markdown);
 
         return view('livewire.documentation')->with('content', $document);
     }

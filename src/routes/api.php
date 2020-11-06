@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'auth:sanctum', 'prefix' => 'v1'], function(){
+Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(function(){
 
    Route::get('/user', function(Request $request) {
        return $request->user();
