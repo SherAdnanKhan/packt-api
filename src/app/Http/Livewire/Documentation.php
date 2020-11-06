@@ -20,19 +20,49 @@ class Documentation extends Component
 {
 
     public $route;
+    /**
+     * @var CommonMarkConverter|mixed
+     */
+    private $environment;
 
 
-    public function render( Markdown $markdown, $route = 'introduction')
+    public function __construct(){
+        $this->environment = $this->setupMarkdownEnvironment();
+        parent::__construct();
+    }
+
+    public function render($route = 'overview')
     {
-        $this->route = $route;
 
-                $document = $this->getHtmlFromMarkdown($markdown);
+        $document = $this->getHtmlFromMarkdown($route);
 
-        return view('livewire.documentation')->with('content', $document);
+        $navigation = $this->setupNav('nav');
+
+        return view('livewire.documentation')->with(['content' => $document, 'nav' => $navigation]);
     }
 
 
-    private function getHtmlFromMarkdown($markdown){
+    private function getHtmlFromMarkdown($route)
+    {
+        return new HtmlString($this->environment->convertToHtml(
+            File::get('documentation/' . $route . '.md')
+        ));
+    }
+
+    private function setupNav($route)
+    {
+        $string =  $this->environment->convertToHtml(
+            File::get('documentation/' . $route . '.md')
+        );
+
+        $urls = str_replace('.md', '', $string);
+        $general = str_replace('href="', 'href="/docs/', $urls);
+        return new HtmlString(str_replace('/docs/overview', '/docs', $general));
+
+    }
+
+    private function setupMarkdownEnvironment()
+    {
         $environment = Environment::createCommonMarkEnvironment();
 
         $environment->addExtension(new TableExtension);
@@ -42,13 +72,9 @@ class Documentation extends Component
         $environment->addExtension(new DisallowedRawHtmlExtension());
         $environment->addExtension(new TaskListExtension());
 
-        $converter = new CommonMarkConverter([
+        return new CommonMarkConverter([
             'allow_unsafe_links' => false,
         ], $environment);
-
-        return  new HtmlString($converter->convertToHtml(
-            File::get('documentation/'.$this->route.'.md')
-        ));
     }
 
 }
