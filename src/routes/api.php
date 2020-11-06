@@ -23,6 +23,9 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
        return $request->user();
    });
 
-   Route::apiResource('product', ProductController::class);
+   Route::apiResource('products', ProductController::class);
+
+   Route::get('/products/{sku}/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+
 });
 

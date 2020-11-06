@@ -37,8 +37,5 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/doc-overview', function(){
         return view('docs');
     });
-
-    Route::get('/cover/{sku}/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
-
 });
 

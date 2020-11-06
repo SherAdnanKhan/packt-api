@@ -26,7 +26,7 @@ class ProductController extends Controller
     public function show($product, ProductHttpService $productService, Request $request)
     {
         try {
-            $this->logInfo('info', 'User has access Product API', $request);
+            $this->logInfo('info', 'User has accessed Product API via SKU: '. $product, $request);
             return $productService->getProductInfo($product);
         } catch (\Exception $e) {
             return response()->json(
@@ -46,12 +46,11 @@ class ProductController extends Controller
      */
     public function getCoverImage(
         int $sku,
-        string $size,
-        ProductHttpService $productHttpService
+        ProductHttpService $productHttpService,
+        string $size = 'all'
     )
     {
         try {
-
             $response =  $productHttpService->getProductImage($sku, $size);
             return response($response['image'])->header('Content-Type', 'image/jpeg');
 

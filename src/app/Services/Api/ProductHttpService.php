@@ -56,7 +56,7 @@ class ProductHttpService extends HttpService
             case 'small':
                 return $this->getSmallImage($sku);
                 break;
-            case 'cover':
+            case 'large':
                 return $this->getCoverImage($sku);
                 break;
             default:
@@ -97,7 +97,7 @@ class ProductHttpService extends HttpService
     {
         if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
             return [
-                'url' => route('coverImages', ['sku' => $sku, 'size' => 'cover']),
+                'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
                 'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
             ];
         }
