@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Livewire\Docs;
 use App\Http\Livewire\Documentation;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
