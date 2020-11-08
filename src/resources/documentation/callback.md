@@ -22,7 +22,7 @@ A JSON formatted HTTP POST to your chosen URL will be made with the following pa
 | 101  | New Product Available                |
 | 200  | Content Updated                      |
 
-
+This callback table will be further added to as our callback system is further developed.
 
 ## Retries
 A callback will be retried until an OK (200) Status code is received from your server, or until the callback has failed 10 times. The time between each callback retry attempt will increase each time there is a failure.

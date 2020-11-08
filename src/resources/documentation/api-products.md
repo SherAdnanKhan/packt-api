@@ -4,9 +4,40 @@ Provides access to data across products
 
 ## Permissions
 
-Product Information (PI)
+You will need the **Product Information (PI)** permission to use this end point.
 
-## Get a Product
+## List Products `ALPHA`
+
+Fetches all products in our catelogue
+
+**URL**
+
+> GET /api/products
+
+**Sample Response**
+
+```json
+JSON Goes Here
+```
+
+**Parameters**
+
+| Field | Description                                               | Optional |
+| ----- | --------------------------------------------------------- | -------- |
+| start | Start position used for paginating order list. Default 0. | Y        |
+| limit | Number of products to return, default 100, max 10000      | Y        |
+
+**Returned Values**
+
+| Field | Description    | Type    |
+| ----- | -------------- | ------- |
+| id    | Product ID     | string  |
+| isbn  | ISBN 13        | integer |
+| ...   | more goes here |         |
+
+
+
+## Get a Product `ALPHA`
 
 Retrieves product information about a single product
 
@@ -36,31 +67,27 @@ JSON Goes Here
 
 
 
-## List Products
+Author Info `ALPHA` 
 
-**URL**
+Returns all authors information assigned to this product.
 
-> GET /api/products
+In a List
 
 
-**Sample Response**
 
-```json
-JSON Goes Here
-```
+Price 
 
-**Parameters**
+Get price of title given a country, default is US.
 
-| Field | Description             | Optional |
-| ----- | ----------------------- | -------- |
-| start    | Start position used for paginating order list. Default 0. | Y        |
-| limit    | Number of products to return, default 10000, max 20000 | Y        |
 
-**Returned Values**
 
-| Field | Description    | Type    |
-| ----- | -------------- | ------- |
-| id    | Product ID     | string  |
-| isbn  | ISBN 13        | integer |
-| ...   | more goes here |         |
+Reviews
+
+Get reviews score for this title
+
+
+
+Packt Rank
+
+Get Packt Rank
 

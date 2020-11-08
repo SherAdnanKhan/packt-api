@@ -32,11 +32,7 @@ $ curl "https://api.packt.com/api/v1/products?token=ylSkZIjbdWybfs4fUQe9sd30LH5Z
 
 You are able to set a token as a sandbox token - you should do this if you are using a token in dev, test or stage. Use Sandbox tokens for testing.
 
-This allows us to identify requests from test environments and ensures that any requests remain transient on our systems. All requests using sandbox tokens will  
-
-- 
-- Not a permission per-se but should be used when testing.
-- All requests here will be transient
+This allows us to identify requests from test environments and ensures that any requests remain transient on our systems. All transactions using sandbox tokens will be treated as a test transaction.
 
 ## Access Permissions
 
@@ -46,32 +42,16 @@ You are able to associate a permission against your API key during key creation,
 
 All API users have access to our Product Information API. You will need to raise a support request with our Partners team to be assigned additional permissions.
 
-### Test (TEST)
+| Access Permission   | Code       | Rights                                                       |
+| ------------------- | ---------- | ------------------------------------------------------------ |
+| Test                | TEST       | Access to test end point                                     |
+| Product Information | PI         | Access to our catalogue and product information              |
+| Content             | CONTENT    | Can retrieve our titles through our API  ePub, PDF, Colour PDF formats supported You will need to be allocated titles, see entitlement endpoint in content. |
+| All Content         | ALLCONTENT | It's a Multi Pass! Can retrieve any of our titles through our API without checks on entitlements. You can access any format available. |
+| Store               | STORE      | Ability to transact through this API, be able to place orders and retrieve order status. |
+| Subscription        | SUBS       | Ability to create and manage subscription user settings.     |
+| Super User          | SU         | God Mode. Reserved for our administrators and has unfettered access to the entire system and can be used in place of any other access permission. Tokens using a Super User token will bypass our integrity checks. |
 
-* Access to test end point
+Note, not all of this functionality is available yet through our API.
 
-### Product Information (PI)
-
-  - Access to our catalogue and product information
-
-### Content (CONTENT)
-  - Can retrieve our titles through our API 
-  - ePub, PDF, Colour PDF formats supported
-  - You will need to be allocated titles, see entitlement endpoint in content.
-
-### All Content (ALLCONTENT)
-
-* Multi Pass!
-* Can retrieve any of our titles through our API without checks on entitlements
-* You can access any format available..
-
-### Store (STORE)
-  - Ability to transact through this API, be able to place orders and retrieve order status.
-  - (Future access)
-### Super User (SU)
-  - Reserved for our administrators and has unfettered access to the entire system. 
-
-
-
-
-These permissions will be made available based on your needs. Please contact support if you require access to any of these permissions.
+These permissions will be made available based on your needs. Please [contact support](/contact) if you require access to any of these permissions.

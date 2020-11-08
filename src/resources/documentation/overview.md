@@ -1,8 +1,10 @@
 # Packt API
 
-This is the documentation for the current version of our API, v1.0 (beta).
+This is the documentation for the current version of our API, v0.1 (alpha).
 
-Need an account? [Sign up now](/register).
+Not all functionality is available now, only functionality marked as `ALPHA` is available in this release.
+
+Need an account? [Sign up now](/register). 
 
 Requests should always be made over HTTPS. Connections cannot be made via HTTP. Please note that support for SSL 3.0 has been disabled and we recommend using TLS 1.2 or better.
 
