@@ -8,6 +8,7 @@ use App\Actions\Jetstream\DeleteTeam;
 use App\Actions\Jetstream\DeleteUser;
 use App\Actions\Jetstream\UpdateTeamName;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Fortify;
 use Laravel\Jetstream\Jetstream;
 
 class JetstreamServiceProvider extends ServiceProvider
@@ -45,19 +46,24 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions()
     {
-        Jetstream::defaultApiTokenPermissions(['read']);
+        Jetstream::defaultApiTokenPermissions(['TEST', 'PI']);
 
         Jetstream::role('admin', __('Administrator'), [
-            'create',
-            'read',
-            'update',
-            'delete',
+            'TEST',
+            'PI',
+            'CONTENT',
+            'ALLCONTENT',
+            'STORE',
+            'SUBS',
         ])->description(__('Administrator users can perform any action.'));
 
         Jetstream::role('editor', __('Editor'), [
-            'read',
-            'create',
-            'update',
-        ])->description(__('Editor users have the ability to read, create, and update.'));
+            'TEST',
+            'PI',
+            'CONTENT',
+            'ALLCONTENT',
+            'STORE',
+            'SUBS',
+        ])->description(__('Standard users have access to TEST and PI actions'));
     }
 }
