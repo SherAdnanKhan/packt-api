@@ -34,6 +34,12 @@
                 {{ $slot }}
             </main>
 
+            <footer>
+                <div class="w-full text-center text-gray-600 text-sm">
+                    The word 'Packt' and the Packt logo are registered trademarks belonging to Packt Publishing Limited. All rights reserved
+                </div>
+            </footer>
+
         </div>
 
         @stack('modals')
