@@ -28,6 +28,7 @@ services:
       POSTGRES_USER: packt-api
       POSTGRES_PASSWORD: packt-api
       POSTGRES_DB: packt-api
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ./data/pg:/var/lib/postgresql/data
     networks:
@@ -44,4 +45,10 @@ services:
       - "9000:9000"
     networks:
       - packt-api
-   
+  npm:
+    image: node:latest
+    container_name: npm
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: [ 'npm' ]
