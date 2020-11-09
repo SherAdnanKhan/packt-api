@@ -2,7 +2,11 @@
 External Developer/B2B friendly API service/portal
 
 
-# Running and Deploying
+## Running and Deploying
+1. Clone repository
+2. Run the following command ```./start.sh``` from terminal
+3. This should build the images and run the docker containers as well as do a npm install and composer install.
+4. To stop, simply run the following command: ```./stop.sh```
 
 ## Issues
 
