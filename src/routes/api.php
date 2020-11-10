@@ -25,7 +25,11 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
 
    Route::apiResource('products', ProductController::class);
 
-   Route::get('/products/{sku}/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+   Route::group(['prefix' => '/products/{sku}'], function(){
+       Route::get('/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+       Route::get('authors', [ProductController::class, 'getAuthors'])->name('productAuthors');
+   });
+
 
 });
 
