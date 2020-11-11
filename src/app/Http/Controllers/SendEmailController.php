@@ -36,7 +36,7 @@ class SendEmailController extends Controller
      );
 
 
-if($request->get('emailcopy') == 1){
+/*if($request->get('emailcopy') == 1){
 
      Mail::to($supportemail)->send(new SendMail($data));
      Mail::to($user['email'])->send(new SendMail($data)); 
@@ -45,7 +45,7 @@ if($request->get('emailcopy') == 1){
 
     Mail::to($supportemail)->send(new SendMail($data));
 
-}
+}*/
      return back()->with('success', 'Thank you for your support enquiry, we will aim to get back to you soon as we can.');
 /*	->with('image',$imageName);*/
     }

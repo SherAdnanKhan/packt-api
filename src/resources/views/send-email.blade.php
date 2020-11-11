@@ -47,6 +47,19 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+.alert.alert-success.alert-block{
+  padding:18px;
+  color:#3c763d;
+  background-color:#dff0d8;
+  border-color:#d6e9c6;
+}
+
+.alert.alert-danger{
+ color:#a94442;
+ background-color:#f2dede;
+ border-color:#ebccd1;
+}
   </style>
  </head>
  <body>
@@ -57,7 +70,7 @@ input[type=submit]:hover {
    <h3 align="center">How can we help? [Technical Issue | Need more access]</h3><br />
    @if (count($errors) > 0)
     <div class="alert alert-danger">
-     <button type="button" class="close" data-dismiss="alert">×</button>
+     <button type="button" class="close" data-dismiss="alert"></button>
      <ul>
       @foreach ($errors->all() as $error)
        <li>{{ $error }}</li>
@@ -67,7 +80,7 @@ input[type=submit]:hover {
    @endif
    @if ($message = Session::get('success'))
    <div class="alert alert-success alert-block">
-    <button type="button" class="close" data-dismiss="alert">×</button>
+    <button type="button" class="close" data-dismiss="alert"></button>
            <strong>{{ $message }}</strong>
    </div>
    @endif
@@ -88,8 +101,7 @@ input[type=submit]:hover {
     <div class="form-group">
      <input type="submit" name="send" class="btn btn-info" value="Send" />
     </div>
-   </form>
-   
+   </form> 
   </div>
  </body>
 </html>
