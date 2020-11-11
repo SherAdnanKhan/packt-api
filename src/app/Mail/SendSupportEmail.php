@@ -5,11 +5,11 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendSupportEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $data;
     /**
      * Create a new message instance.
@@ -28,12 +28,15 @@ class SendSupportEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('mayurg@packt.com')
+        $mail =  $this->from('mayurg@packt.com')
                     ->subject('New Customer Equiry')
                     ->view('dynamic_email_template')
-                    ->with('data', $this->data)
-                    ->attachFromStorage($this->data['image']);
+                    ->with('data', $this->data);
+
+        if(isset($this->data['image'])){
+            $mail->attachFromStorage($this->data['image']);
+        }
+
+        return $mail;
     }
 }
-
-?>
