@@ -2,6 +2,8 @@
 
 return [
 
+    'support_email'=> env('SUPPORT_EMAIL','mayurg@packt.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

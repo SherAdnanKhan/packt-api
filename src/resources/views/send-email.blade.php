@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>How can we help? [Technical Issue | Need More access]</title>
+  <title><strong>How can we help? [Technical Issue | Need More access]</strong></title>
   <style type="text/css">
 .box{
     width:360px;
@@ -14,11 +14,11 @@
     background-color:#ffff99;
  }
 
-.checkbox-email{
+.checkbox-email, .reason_contact{
     margin: 0 0 15px 0;
 }
 
-input[type=text],input[type=file], select, textarea {
+input[type=text],input[type=file],select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -86,7 +86,14 @@ input[type=submit]:hover {
    @endif
    <form method="post" action="{{url('send-email/send')}}" enctype="multipart/form-data">
     {{ csrf_field() }}
-    <div class="form-group">
+    <div class="form-group reason_contact">
+     <strong>Reason For Contact</strong><br>
+      <input type="radio" id="genearl_contact" name="contact_reason" value="general">
+      <label>General Contact</label><br>
+      <input type="radio" id="access_request" name="contact_reason" value="access">
+      <label>Access Request</label><br>
+    </div> 
+   <div class="form-group">
      <label>Message</label>
      <textarea max-legth="4000" name="message" class="form-control"></textarea>
     </div>
