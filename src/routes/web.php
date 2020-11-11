@@ -37,5 +37,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/doc-overview', function(){
         return view('docs');
     });
+
+   Route::get('/send-email',[App\Http\Controllers\SendEmailController::class,'index'])->name('send-email');
+   Route::post('/send-email/send',[App\Http\Controllers\SendEmailController::class,'send'])->name('send-email');
 });
 
