@@ -32,7 +32,7 @@
                 clearly explained with functional examples.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="{{ route('documentation') }}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Explore the documentation</div>
 
