@@ -21,7 +21,7 @@
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
-            <div class="pb-14 bg-right bg-cover custom-bg">
+            <div class="pb-14 bg-right bg-cover custom-bg h-screen">
                 <nav class="w-full container mx-auto py-6" x-data="{ open: false }">
 
                     <div class="w-full flex items-center justify-between">
