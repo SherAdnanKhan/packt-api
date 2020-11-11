@@ -19,10 +19,9 @@
                     <h3 class="text-3xl mb-5">Support</h3>
                     <p>Don't have the required access or need some assistance? Fill in the form below and one of our
                         team will be in touch.</p>
-                    [FORM GOES HERE]
+                    @include('send-email')
                 </div>
             </div>
-
         </div>
     </div>
 
