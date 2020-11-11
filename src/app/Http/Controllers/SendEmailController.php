@@ -38,19 +38,11 @@ class SendEmailController extends Controller
 
 if($request->get('emailcopy') == 1){
 
-/*     print_r('Support Email:'.$supportemail);
-     print_r('Customer Email:'.$user['email']);
-     die;*/
-
      Mail::to($supportemail)->send(new SendMail($data));
      Mail::to($user['email'])->send(new SendMail($data)); 
 
-    /* Mail::to($from)->cc($to)->send(new SendMail($data));*/
-
 } else {
-  /*  print_r('else');
-    print_r('Support Email:'.$supportemail);
-    die;*/
+
     Mail::to($supportemail)->send(new SendMail($data));
 
 }
