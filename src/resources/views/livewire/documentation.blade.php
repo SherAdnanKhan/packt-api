@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-0">
                 <div class="lg:flex -mx-6 relative">
                     <div
-                        class="absolute top-0 right-5 mb-10 mt-2 hover:text-gray-900 font-medium  hover:text-gray-900 font-medium text-gray-700">
+                        class="hidden absolute top-0 right-5 mb-10 mt-2 hover:text-gray-900 font-medium  hover:text-gray-900 font-medium text-gray-700">
                         <a href="#" @click="open = !open" x-bind:class="{'text-orange-700' : open}">
 
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -22,7 +22,7 @@
                     </div>
 
                     <div id="sidebar"
-                         class="fixed bg-gray-200 inset-0 h-full bg-white z-90 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5 hidden pt-16">
+                         class="bg-gray-200 lg:inset-0 h-full bg-white z-90 border-b lg:-mb-16 lg:-mb-0 lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5   pb-6 lg:pt-16">
                         <div id="navWrapper" class="h-full overflow-y-auto">
                             <nav
                                 class="px-4 pt-6 mt-5 overflow-y-auto text-base lg:text-sm lg:py-0 lg:pl-6 lg:pr-6 sticky?lg:h-(screen-16)">
