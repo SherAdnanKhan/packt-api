@@ -14,7 +14,6 @@ class SendEmailController extends Controller
      return view('send-email');
     }
 
-
     function send(Request $request)
     {
      $user = Auth::user();
@@ -26,7 +25,7 @@ class SendEmailController extends Controller
       'emailcopy'=> 'boolean'
      ]);
 
-     $imageName = time().'.'.$request->image->extension();  
+     $imageName = time().'.'.$request->image->extension();
      $request->image->move(public_path('images'), $imageName);
 
      $data = array(
@@ -36,18 +35,18 @@ class SendEmailController extends Controller
      );
 
 
-/*if($request->get('emailcopy') == 1){
+    if($request->get('emailcopy') == 1){
 
-     Mail::to($supportemail)->send(new SendMail($data));
-     Mail::to($user['email'])->send(new SendMail($data)); 
+         Mail::to($supportemail)->send(new SendMail($data));
+         Mail::to($user['email'])->send(new SendMail($data));
 
-} else {
+    } else {
 
-    Mail::to($supportemail)->send(new SendMail($data));
+        Mail::to($supportemail)->send(new SendMail($data));
 
-}*/
+    }
      return back()->with('success', 'Thank you for your support enquiry, we will aim to get back to you soon as we can.');
-/*	->with('image',$imageName);*/
+
     }
 
   }
