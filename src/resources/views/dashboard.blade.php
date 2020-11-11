@@ -5,16 +5,24 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl flex mx-auto sm:px-6 lg:px-12">
-            <div class="bg-white w-3/5 overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+    <div class="py-12 mx-auto sm:max-w-7xl px-6">
+        <div class="flex flex-wrap -mx-3 overflow-hidden">
+
+            <div class="my-1 w-full px-3 lg:w-3/5 overflow-hidden">
+                <div class="shadow-xl sm:rounded-lg bg-white  sm:py-6">
+                    <x-jet-welcome/>
+                </div>
             </div>
-            <div class="w-2/5 ml-5 bg-white max-w-2xl overflow-hidden shadow-xl sm:rounded-lg sm:px-6 sm:py-6">
-                <h3 class="text-3xl mb-5">Support</h3>
-                <p>Don't have the required access or need some assistance? Fill in the form below and one of our team will be in touch.</p>
-                [FORM GOES HERE]
+
+            <div class="my-1 w-full px-3 lg:w-2/5 overflow-hidden">
+                <div class="shadow-xl sm:rounded-lg bg-white sm:px-6 sm:py-6">
+                    <h3 class="text-3xl mb-5">Support</h3>
+                    <p>Don't have the required access or need some assistance? Fill in the form below and one of our
+                        team will be in touch.</p>
+                    [FORM GOES HERE]
+                </div>
             </div>
+
         </div>
     </div>
 

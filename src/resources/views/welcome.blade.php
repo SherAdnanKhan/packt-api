@@ -22,7 +22,7 @@
             </div>
 
             <!--Right Col-->
-            <div class="w-full lg:w-2/5 xl:w-3/6 py-6 overflow-y-hidden place-self-end lg:visible invisible" >
+            <div class="w-full lg:w-2/5 xl:w-3/6 py-6 overflow-y-hidden place-self-end lg:block hidden" >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-500  text-orange-500 stroke-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
@@ -31,7 +31,7 @@
             </div>
 
             <!--Footer-->
-            <div class="w-full pt-16 pb-6 text-sm text-center  fade-in">
+            <div class="w-full pt-10 pb-6 text-sm text-center  fade-in">
                 <a class="text-gray-500 no-underline hover:no-underline" href="#">The word 'Packt' and the Packt logo are registered trademarks belonging to Packt Publishing Limited. All rights reserved</a>
             </div>
 

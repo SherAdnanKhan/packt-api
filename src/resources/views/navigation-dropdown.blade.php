@@ -131,6 +131,7 @@
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
                               stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
+                    Menu
                 </button>
             </div>
         </div>
@@ -215,6 +216,21 @@
                         @endforeach
                     @endif
                 </div>
+            </div>
+        </div>
+
+    @else
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    {{ __('Register') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('documentation') }}" :active="request()->routeIs('documentation')">
+                    {{ __('Docs') }}
+                </x-jet-responsive-nav-link>
             </div>
         </div>
     @endauth
