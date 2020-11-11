@@ -27,13 +27,13 @@ class SendEmailController extends Controller
      ]);
 
     $imageName = time().'.'.$request->image->extension();
-    $request->image->move(public_path('images'), $imageName);
-/*     $path = $request->image->store('supportdocuments');*/
+/*   $request->image->move(public_path('images'), $imageName);*/
+     $file = $request->image->store('supportdocuments');
 
      $data = array(
             'contact_reason'=> $request->contact_reason,
             'message'   =>   $request->message,
-            'image'     =>    $imageName,
+            'image'     =>    $file,
             'emailcopy' =>   $request->emailcopy
      );
 

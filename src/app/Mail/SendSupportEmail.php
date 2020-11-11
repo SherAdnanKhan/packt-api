@@ -32,7 +32,7 @@ class SendSupportEmail extends Mailable
                     ->subject('New Customer Equiry')
                     ->view('dynamic_email_template')
                     ->with('data', $this->data)
-                    ->attach(public_path('images/'.$this->data['image']));
+                    ->attachFromStorage($this->data['image']);
     }
 }
 
