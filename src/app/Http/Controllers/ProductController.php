@@ -69,9 +69,11 @@ class ProductController extends Controller
     )
     {
         try {
+
             $this->logInfo('info', 'User has accessed Product Author API via SKU: ' . $sku, $request);
-            $response = $productHttpService->getProductInfo($sku.'1', $authorHttpService)['authors'];
+            $response = $productHttpService->getProductInfo($sku, $authorHttpService)['authors'];
             return response()->json($response);
+
         } catch (RequestException $e) {
             return abort(404);
         }
