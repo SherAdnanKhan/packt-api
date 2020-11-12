@@ -30,7 +30,7 @@ class SendSupportEmail extends Mailable
     {
         $mail =  $this->from('mayurg@packt.com')
                     ->subject('New Customer Equiry')
-                    ->view('dynamic_email_template')
+                    ->markdown('emails.supportrequest')
                     ->with('data', $this->data);
 
         if(isset($this->data['image'])){

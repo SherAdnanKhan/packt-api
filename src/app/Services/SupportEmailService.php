@@ -29,7 +29,8 @@ class SupportEmailService {
             'contact_reason' => $request->contact_reason,
             'message' => $request->message,
             'image' => $file ?? null,
-            'emailcopy' => $request->emailcopy
+            'emailcopy' => $request->emailcopy,
+            'user' => $request->user()
         );
 
         if ($request->get('emailcopy') == 1) {
