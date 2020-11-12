@@ -6,6 +6,7 @@ use App\Http\Livewire\Documentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\SiteAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
    Route::get('/send-email',[SendEmailController::class,'index'])->name('send-email');
    Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email');
 });
+
+Route::get('/auth/register',[SiteAuthController::class,'siteRegister'])->name('/auth/register');
+Route::post('/auth/register',[SiteAuthController::class,'siteRegisterPost'])->name('auth/register');
 
