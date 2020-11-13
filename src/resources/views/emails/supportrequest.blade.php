@@ -3,8 +3,9 @@
 
 A support query has been raised by {{ $data['user']['name'] }} ({{$data['user']['email']}}). Please see the details of their enquiry below:
 
-### Enquiry Details
-{{ $data['message'] }}
+**Enquiry Details**\
+Type Of Enquiry: {{ $data['contact_reason'] }}\
+Message: {{ $data['message'] }}
 
 Thanks,<br>
 {{ config('app.name') }}
