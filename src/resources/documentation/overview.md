@@ -1,8 +1,10 @@
 # Packt API
 
-This is the documentation for the current version of our API, v0.1 (alpha).
+`ALPHA` 
 
-Not all functionality is available now, only functionality marked as `ALPHA` is available in this release.
+This is the documentation for the current version of our API, v1 (alpha).
+
+We are currently developing this platform, so not all functionality is available right now, only functionality marked as `ALPHA` is available in this release.
 
 Need an account? [Sign up now](/register). 
 
