@@ -32,7 +32,7 @@ class ProductHttpService extends HttpService
         $this->authorHttpService = $authorHttpService;
 
         $this->productData['summary'] = $this->getProductSummary($sku);
-//        $this->productData['images'] = $this->getProductImage($sku);
+        $this->productData['images'] = $this->getProductImage($sku);
         $this->productData['authors'] = $this->getAuthorInformation($this->productData['summary']['authors']);
 
         return Product::make($this->productData)->resolve();

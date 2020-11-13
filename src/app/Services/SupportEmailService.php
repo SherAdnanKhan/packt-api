@@ -6,37 +6,37 @@ use App\Mail\SendSupportEmail;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Mail;
 
-class SupportEmailService {
+class SupportEmailService extends BaseService {
 
     use ValidatesRequests;
 
-    public function process($request){
+    public function process(){
 
 
-        $supportEmail = ($request->contact_reason == 'access') ? config('app.access_email') : config('app.support_email');
+        $supportEmail = ($this->request->contact_reason == 'access') ? config('app.access_email') : config('app.support_email');
 
-        $this->validate($request, [
+        $this->validate($this->request, [
             'contact_reason' => 'required',
             'message' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'emailcopy' => 'boolean'
         ]);
 
-        if ($request->has('image')) {
-            $file = $request->image->store('supportdocuments');
+        if ($this->request->has('image')) {
+            $file = $this->request->image->store('supportdocuments');
         }
 
         $data = array(
-            'contact_reason' => $request->contact_reason,
-            'message' => $request->message,
+            'contact_reason' => $this->request->contact_reason,
+            'message' => $this->request->message,
             'image' => $file ?? null,
-            'emailcopy' => $request->emailcopy,
-            'user' => $request->user()
+            'emailcopy' => $this->request->emailcopy,
+            'user' => $this->request->user()
         );
 
-        if ($request->get('emailcopy') == 1) {
+        if ($this->request->get('emailcopy') == 1) {
             $mail = Mail::to($supportEmail)->send(new SendSupportEmail($data));
-            $customerEmail = Mail::to($request->user()->email)->send(new SendSupportEmail($data));
+            $customerEmail = Mail::to($this->request->user()->email)->send(new SendSupportEmail($data));
 
             if($mail && $customerEmail){
                 return true;

@@ -17,8 +17,6 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-
-//        dd($this->resource['authors']);
         return [
             'id' => $this->resource['summary']['productId'],
             'isbn13' => $this->resource['summary']['isbn13'],
@@ -34,7 +32,7 @@ class Product extends JsonResource
             'description' => $this->resource['summary']['about'],
             'authors' => Author::collection($this->resource['authors']),
             'url' => self::PACKTPUB_URL.$this->resource['summary']['shopUrl'],
-//            'images' => $this->getImagePaths(),
+            'images' => $this->getImagePaths(),
             'meta' => $this->resource['summary']['meta']
         ];
     }
@@ -42,7 +40,6 @@ class Product extends JsonResource
     private function getImagePaths(){
 
         $images = [];
-
         foreach($this->resource['images'] as $size => $image){
             $images[$size] = $image['url'];
         }
