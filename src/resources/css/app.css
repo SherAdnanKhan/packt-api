@@ -39,3 +39,12 @@
 #navWrapper ul li ul li{
     @apply py-1;
 }
+
+.markdown-body pre code.language-json {
+    display:block;
+    @apply overflow-hidden;
+}
+
+.markdown-body pre .code-trigger {
+    @apply text-orange-500 underline;
+}

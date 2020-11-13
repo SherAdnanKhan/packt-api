@@ -2,6 +2,9 @@
 
 return [
 
+    'support_email'=> env('SUPPORT_EMAIL','apisupport@packt.com'),
+    'access_email'=> env('ACCESS_EMAIL','apiaccess@packt.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

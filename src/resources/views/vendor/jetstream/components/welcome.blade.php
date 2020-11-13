@@ -14,7 +14,7 @@
 </div>
 
 
-<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+<div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2  sm:h-full">
     <div class="p-6">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,7 +32,7 @@
                 clearly explained with functional examples.
             </div>
 
-            <a href="https://laravel.com/docs">
+            <a href="{{ route('documentation') }}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-indigo-700">
                     <div>Explore the documentation</div>
 

@@ -44,9 +44,18 @@ class Documentation extends Component
 
     private function getHtmlFromMarkdown($route)
     {
-        return new HtmlString($this->environment->convertToHtml(
+
+        $string = $this->environment->convertToHtml(
             File::get('documentation/' . $route . '.md')
-        ));
+        );
+
+        $collapsible = str_replace(
+            '<pre><code class="language-json">',
+            '<pre x-data="{show:false}" class="relative"><a @click="show=!show" class="absolute top-5 right-5 code-trigger"  x-text="show ? \'Collapse\' : \'Expand\'" href="#trigger">Expand</a><code :class="{\'h-full\': show, \'max-h-20\': !show }" class="language-json block max-h-20">',
+            $string);
+
+
+        return new HtmlString($collapsible);
     }
 
     private function setupNav($route)
@@ -57,6 +66,7 @@ class Documentation extends Component
 
         $urls = str_replace('.md', '', $string);
         $general = str_replace('href="', 'href="/docs/', $urls);
+
         return new HtmlString(str_replace('/docs/overview', '/docs', $general));
 
     }

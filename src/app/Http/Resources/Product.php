@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class Product extends JsonResource
 {
+    const PACKTPUB_URL = 'https://packtpub.com';
+
     /**
      * Transform the resource into an array.
      *
@@ -16,13 +18,23 @@ class Product extends JsonResource
     public function toArray($request)
     {
 
+//        dd($this->resource['authors']);
         return [
             'id' => $this->resource['summary']['productId'],
             'isbn13' => $this->resource['summary']['isbn13'],
+            'isbn10' => $this->resource['summary']['isbn10'],
+            'isbns' => $this->resource['summary']['isbns'],
             'title' => $this->resource['summary']['title'],
             'tagline' => $this->resource['summary']['oneLiner'],
+            'pages' => $this->resource['summary']['pages'],
+            'publication_date' => $this->resource['summary']['publicationDate'],
+            'length' => $this->resource['summary']['length'],
+            'learn' => $this->resource['summary']['learn'],
+            'features' => $this->resource['summary']['features'],
             'description' => $this->resource['summary']['about'],
-            'images' => $this->getImagePaths(),
+            'authors' => Author::collection($this->resource['authors']),
+            'url' => self::PACKTPUB_URL.$this->resource['summary']['shopUrl'],
+//            'images' => $this->getImagePaths(),
             'meta' => $this->resource['summary']['meta']
         ];
     }

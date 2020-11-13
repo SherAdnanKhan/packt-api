@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Resources\Product;
 use App\Services\Api\ProductHttpService;
@@ -24,8 +25,13 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
    });
 
    Route::apiResource('products', ProductController::class);
+   Route::apiResource('authors', AuthorController::class)->only('index');
 
-   Route::get('/products/{sku}/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+   Route::group(['prefix' => '/products/{sku}'], function(){
+       Route::get('/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+       Route::get('authors', [ProductController::class, 'getAuthors'])->name('productAuthors');
+   });
+
 
 });
 

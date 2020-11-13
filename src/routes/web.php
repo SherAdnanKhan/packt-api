@@ -5,6 +5,7 @@ use App\Http\Livewire\Docs;
 use App\Http\Livewire\Documentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/doc-overview', function(){
         return view('docs');
     });
+
+   Route::get('/send-email',[SendEmailController::class,'index'])->name('send-email');
+   Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email');
 });
 

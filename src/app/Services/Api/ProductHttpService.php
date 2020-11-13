@@ -3,9 +3,10 @@
 namespace App\Services\Api;
 
 use App\Http\Resources\Product;
-use Http\Discovery\Exception\NotFoundException;
+use App\Services\Api\AuthorHttpService;
+use GuzzleHttp\Client;
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Facades\Http;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class ProductHttpService extends HttpService
 {
@@ -14,17 +15,25 @@ class ProductHttpService extends HttpService
     const PRODUCT_IMAGE_SMALL_API = 'products/%s/cover/smaller';
 
     public $productData;
+    /**
+     * @var \App\Services\Api\AuthorHttpService
+     */
+    private $authorHttpService;
 
 
     /**
      * @param string $sku
+     * @param \App\Services\Api\AuthorHttpService $authorHttpService
      * @return array
      * @throws RequestException
      */
-    public function getProductInfo(string $sku)
+    public function getProductInfo(string $sku, AuthorHttpService $authorHttpService)
     {
+        $this->authorHttpService = $authorHttpService;
+
         $this->productData['summary'] = $this->getProductSummary($sku);
-        $this->productData['images'] = $this->getProductImage($sku);
+//        $this->productData['images'] = $this->getProductImage($sku);
+        $this->productData['authors'] = $this->getAuthorInformation($this->productData['summary']['authors']);
 
         return Product::make($this->productData)->resolve();
     }
@@ -39,7 +48,7 @@ class ProductHttpService extends HttpService
         try {
             return $this->process(sprintf(self::PRODUCT_SUMMARY_API, $sku))->json();
         } catch (\Exception $e) {
-            throw new NotFoundException('Sorry, the product was not found', 404);
+            throw new NotFoundResourceException('Sorry, the product was not found', 404);
         }
     }
 
@@ -103,6 +112,14 @@ class ProductHttpService extends HttpService
         }
 
         return false;
+    }
+
+    private function getAuthorInformation($authors){
+        try {
+            return $this->authorHttpService->getAuthors($authors);
+        } catch (\Exception $e) {
+            throw new NotFoundResourceException('Sorry, the author was not found', 404);
+        }
     }
 
 }

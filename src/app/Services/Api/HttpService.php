@@ -34,7 +34,7 @@ abstract class HttpService
      * @return \Illuminate\Http\Client\Response
      * @throws \Illuminate\Http\Client\RequestException
      */
-    protected function process(string $uri, array $params = [], $type = 'get')
+    protected function process(string $uri = '', array $params = [], $type = 'get')
     {
         return Http::retry(5, 100)->
         {$type}($this->uri . $uri, $params)
