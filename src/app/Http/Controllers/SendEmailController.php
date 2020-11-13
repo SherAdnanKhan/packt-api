@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\SupportEmailService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendSupportEmail;
 
 class SendEmailController extends Controller
 {
@@ -15,7 +12,7 @@ class SendEmailController extends Controller
     {
 
         try {
-            $supportEmailService->process($request);
+            $supportEmailService->setRequest($request)->process();
             session()->flash('success', 'Thank you for your support enquiry, we will aim to get back to you soon as we can');
             return back();
         } catch (\Exception $e){

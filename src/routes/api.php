@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestAPIController;
 use App\Http\Resources\Product;
 use App\Services\Api\ProductHttpService;
 use Illuminate\Http\Request;
@@ -23,6 +24,8 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
    Route::get('/user', function(Request $request) {
        return $request->user();
    });
+
+   Route::get('test', [TestAPIController::class, 'index']);
 
    Route::apiResource('products', ProductController::class);
    Route::apiResource('authors', AuthorController::class)->only('index');
