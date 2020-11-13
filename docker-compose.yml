@@ -57,6 +57,8 @@ services:
   mailhog:
     image: mailhog/mailhog
     container_name: mailhog
+    environment:
+      MH_UI_WEB_PATH: _/mail
     ports: 
       - 1025:1025 # smtp server
       - 8025:8025 # web ui 
