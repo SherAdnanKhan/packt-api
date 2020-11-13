@@ -28,10 +28,18 @@ class SendSupportEmail extends Mailable
      */
     public function build()
     {
-        $mail =  $this->from('mayurg@packt.com')
-                    ->subject('New Customer Equiry')
-                    ->markdown('emails.supportrequest')
+        $mail =  $this->from('noreply@packt.com')
                     ->with('data', $this->data);
+
+        if(isset($this->data['emailcopy']) && $this->to[0]['address'] == auth()->user()->email){
+            $mail->markdown('emails.supportrequestcopy')
+            ->subject('Your Packt API Enquiry');
+
+        } else {
+            $mail->markdown('emails.supportrequest')
+                ->replyTo(auth()->user()->email)
+                ->subject('New Packt API Customer Enquiry');
+        }
 
         if(isset($this->data['image'])){
             $mail->attachFromStorage($this->data['image']);

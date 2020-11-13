@@ -12,7 +12,8 @@ class SupportEmailService {
 
     public function process($request){
 
-        $supportemail = config('app.support_email');
+
+        $supportEmail = ($request->contact_reason == 'access') ? config('app.access_email') : config('app.support_email');
 
         $this->validate($request, [
             'contact_reason' => 'required',
@@ -34,14 +35,21 @@ class SupportEmailService {
         );
 
         if ($request->get('emailcopy') == 1) {
-            $mail = Mail::to([$supportemail, $request->user()->email])->send(new SendSupportEmail($data));
+            $mail = Mail::to($supportEmail)->send(new SendSupportEmail($data));
+            $customerEmail = Mail::to($request->user()->email)->send(new SendSupportEmail($data));
+
+            if($mail && $customerEmail){
+                return true;
+            }
         } else {
-            $mail = Mail::to($supportemail)->send(new SendSupportEmail($data));
+            $mail = Mail::to($supportEmail)->send(new SendSupportEmail($data));
+
+            if($mail){
+                return true;
+            }
         }
 
-        if($mail){
-            return true;
-        }
+
 
         return false;
 
