@@ -1,11 +1,11 @@
-# Callbacks
-The Packt API can make callbacks to a custom URL whenever there is a data update.
+# Callbacks (Webhooks)
+Webhooks are a user-defined HTTP callback triggered by an event within Packt. The Packt API uses webhooks to asynchronously let your application know when these events happen, like a new product being published or a change in product information.
 
-Setup your callback URL under the Callback section of the site.
+When the webhook event occurs, Packt makes an HTTP POST request to the [URL you have configured](/callbacks) for your webhook. Packts request to your application includes details of the event like the title of the product changed. Your application can then perform api calls to determine further details.
 
-A JSON formatted HTTP POST to your chosen URL will be made with the following parameters.
+A HTTP POST to your chosen URL will be made with the following parameters.
 
-## Returned values
+## Callback Parameters
 
 | Parameter   | Description                                                  | Data type |
 | ----------- | ------------------------------------------------------------ | --------- |
@@ -18,12 +18,18 @@ A JSON formatted HTTP POST to your chosen URL will be made with the following pa
 
 | Code | Description                          |
 | ---- | ------------------------------------ |
+| 000  | Canary (Test).... Tweet!             |
 | 100  | Product Information has been changed |
 | 101  | New Product Available                |
 | 200  | Content Updated                      |
 
 This callback table will be further added to as our callback system is further developed.
 
+## Canary Callbacks
+
+We will automatically send you a canary callback once every 8 hours if you tell us to when you configure your callback. This is to let you know our system is still alive (for monitoring) and for you to use as a continious test end point.
+
 ## Retries
-A callback will be retried until an OK (200) Status code is received from your server, or until the callback has failed 10 times. The time between each callback retry attempt will increase each time there is a failure.
+
+A callback will be retried until an OK (200) Status code is received from your server, or until the callback has failed 10 times. The time between each callback retry attempt will increase each time there is a failure, we will stop trying after approximately 1 week.
 
