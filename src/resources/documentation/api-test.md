@@ -6,7 +6,7 @@ A token is required to call this end point.
 
 **URL**
 
-> GET /api/products/{sku}/authors
+> GET /api/v1/test
 
 ## Sample Response
 ```json 

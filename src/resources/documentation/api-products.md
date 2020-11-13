@@ -14,7 +14,7 @@ Fetches all products in our catelogue
 
 **URL**
 
-> GET /api/products
+> GET /api/v1/products
 
 **Sample Response**
 
@@ -45,7 +45,7 @@ Retrieves product information about a single product
 
 **URL**
 
-> GET /api/products/{id}
+> GET /api/v1/products/{id}
 
 **Sample Response**
 
@@ -121,7 +121,7 @@ Returns all authors information assigned to this product.
 
 **URL**
 
-> GET /api/products/{sku}/authors
+> GET /api/v1/products/{sku}/authors
 
 **Sample Response**
 
