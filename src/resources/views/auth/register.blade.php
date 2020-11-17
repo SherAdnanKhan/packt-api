@@ -5,7 +5,7 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-         {!! NoCaptcha::renderJs() !!}
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -27,18 +27,6 @@
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-               <x-jet-label for="captcha" value="{{ __('Captcha') }}" />
-                     <div class="col-md-6">
-                          {!! app('captcha')->display() !!}
-                              @if ($errors->has('g-recaptcha-response'))
-                                   <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                                @endif
-                    </div>
             </div>
 
             <div class="flex items-center justify-end mt-4">
