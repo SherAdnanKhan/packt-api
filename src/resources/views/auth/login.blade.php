@@ -25,6 +25,9 @@
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
+	    {!! RecaptchaV3::initJs() !!}
+	   {!! RecaptchaV3::field('login') !!}
+
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <input id="remember_me" type="checkbox" class="form-checkbox" name="remember">
