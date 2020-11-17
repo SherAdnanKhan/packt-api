@@ -25,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
+	    'g-recaptcha-response' => 'required|captcha',
         ])->validate();
 
         return DB::transaction(function () use ($input) {

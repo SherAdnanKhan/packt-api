@@ -44,6 +44,3 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
    Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email');
 });
 
-Route::get('/auth/register',[SiteAuthController::class,'siteRegister'])->name('/auth/register');
-Route::post('/auth/register',[SiteAuthController::class,'siteRegisterPost'])->name('auth/register');
-
