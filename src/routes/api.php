@@ -38,3 +38,7 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
 
 });
 
+Route::fallback(function () {
+    return response()->json(['errorMessage' => 'Resource not found'], 404);
+});
+
