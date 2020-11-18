@@ -6,6 +6,8 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,6 +49,12 @@ class Handler extends ExceptionHandler
 
         if($throwable instanceof ThrottleRequestsException){
             return response()->json(['errorMessage' => 'Rate Limit Exceeded.'], 429);
+        }
+
+        if($request->is('api/*')){
+            if ($throwable instanceof NotFoundHttpException) {
+                return route('fallback');
+            }
         }
 
         return parent::render($request, $throwable);
