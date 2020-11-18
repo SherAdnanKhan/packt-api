@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(function(){
+Route::middleware(['addAccessToken', 'auth:sanctum', 'throttle:2,1'])->prefix('v1')->group(function(){
 
    Route::get('/user', function(Request $request) {
        return $request->user();
@@ -36,5 +36,9 @@ Route::middleware(['addAccessToken', 'auth:sanctum'])->prefix('v1')->group(funct
    });
 
 
+});
+
+Route::fallback(function () {
+    return response()->json(['errorMessage' => 'Resource not found'], 404);
 });
 
