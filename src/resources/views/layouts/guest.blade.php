@@ -35,12 +35,12 @@
                                 @auth
                                     <a href="{{ route('dashboard') }}" class="text-gray-500 ml-5">Dashboard</a>
                                     <a href="{{ route('documentation') }}" class="text-gray-500 ml-5">Docs</a>
-                                    <a href=""  class="text-gray-500 ml-5">FAQ's</a>
+                                    <a href="/docs/faq"  class="text-gray-500 ml-5">FAQ's</a>
                                 @else
                                     <a href="{{ route('login') }}" class="text-gray-600 ">Login</a>
                                     <a href="{{ route('register') }}" class="text-gray-500 ml-5">Register</a>
                                     <a href="{{ route('documentation') }}" class="text-gray-500 ml-5">Docs</a>
-                                    <a href=""  class="text-gray-500 ml-5">FAQ's</a>
+                                    <a href="/docs/faq"  class="text-gray-500 ml-5">FAQ's</a>
                                 @endauth
                             </div>
 
