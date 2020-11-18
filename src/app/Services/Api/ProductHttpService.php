@@ -5,6 +5,7 @@ namespace App\Services\Api;
 use App\Http\Resources\Product;
 use App\Services\Api\AuthorHttpService;
 use GuzzleHttp\Client;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Client\RequestException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
@@ -48,7 +49,7 @@ class ProductHttpService extends HttpService
         try {
             return $this->process(sprintf(self::PRODUCT_SUMMARY_API, $sku))->json();
         } catch (\Exception $e) {
-            throw new NotFoundResourceException('Sorry, the product was not found', 404);
+            throw new ModelNotFoundException();
         }
     }
 
@@ -104,21 +105,22 @@ class ProductHttpService extends HttpService
      */
     private function getCoverImage(string $sku)
     {
-        if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
-            return [
-                'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
-                'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
-            ];
-        }
 
-        return false;
+            if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
+                return [
+                    'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
+                    'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
+                ];
+            }
+
+            return false;
     }
 
     private function getAuthorInformation($authors){
         try {
             return $this->authorHttpService->getAuthors($authors);
         } catch (\Exception $e) {
-            throw new NotFoundResourceException('Sorry, the author was not found', 404);
+            throw new ModelNotFoundException();
         }
     }
 
