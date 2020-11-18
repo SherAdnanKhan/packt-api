@@ -8,6 +8,7 @@ use App\Services\Api\AuthorHttpService;
 use App\Traits\LogTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -31,11 +32,7 @@ class ProductController extends Controller
             $this->logInfo('info', 'User has accessed Product API via SKU: ' . $product, $request);
             return $productService->getProductInfo($product, $authorHttpService);
         } catch (\Exception $e) {
-            return response()->json(
-                [
-                    'error' => true,
-                    'message' => $e->getMessage()
-                ], $e->getCode());
+            throw new ModelNotFoundException();
         }
 
     }
@@ -57,7 +54,7 @@ class ProductController extends Controller
             return response($response['image'])->header('Content-Type', 'image/jpeg');
 
         } catch (\Exception $e) {
-            return abort(404);
+            throw new ModelNotFoundException();
         }
     }
 
@@ -75,7 +72,7 @@ class ProductController extends Controller
             return response()->json($response);
 
         } catch (RequestException $e) {
-            return abort(404);
+            throw new ModelNotFoundException();
         }
     }
 
