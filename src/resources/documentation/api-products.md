@@ -48,7 +48,7 @@ Fetches all products available in our catalog
 | Field            | Description                                                  | Type             |
 | ---------------- | ------------------------------------------------------------ | ---------------- |
 | id               | Product ID                                                   | string           |
-| isbn13           | ISBN 13                                                      | integer          |
+| isbn13           | ISBN 13                                                      | string           |
 | title            | The title of this product                                    | string           |
 | publication_date | When this product was published                              | date             |
 | authors          | List of author names for this title (Optional)               | array of strings |
@@ -130,9 +130,20 @@ Retrieves product information about a single product
 
 | Field | Description    | Type    |
 | ----- | -------------- | ------- |
-| id    | Product ID     | string  |
-| isbn  | ISBN 13        | integer |
-| ...   | more goes here |         |
+| id    | Product ID | string  |
+| isbn13 and isbn10 | ISBN-13 and ISBN-10 identifiers, ISBN-10  if in doubt please always use ISBN-13, note the ISBN-13 is not guaranteed to be the same as the product id. | string |
+| isbns | ISBN variants of our published product types, eg print, ebook, video etc. | string |
+| title            | The title of this product                                    | string           |
+| tagline | Short description of this product (optional) |  |
+| pages | Number of pages found in the print version of this product (optional) |  |
+| publication_date | When this product was published                              | date             |
+| authors          | List of author names for this title (Optional)               | array of strings |
+| category         | The category this title sits under (eg Data, Cloud & Networking, Game Development, IoT & Hardware, Mobile, Programming, Security Web Development, Business & Other...) | string           |
+| concepts         | A list of concepts that this title covers, eg DevOps, Ecommerce etc.. (Optional) | array of strings |
+| language         | The primary language covered by this title , further languages may be covered, please use get product API for this. (eg Java, Python, etc) (Optional) | string           |
+| langauge_version | The version of the primary language covered by this title (Optional) | string           |
+| tool             | The primary tool or framework covered by this title, eg Flutter,  Grails etc (Optional) | string           |
+| vendor           | The primary vendor that relates to this title Eg Microsoft, IBM etc | string           |
 
 
 

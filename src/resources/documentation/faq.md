@@ -48,7 +48,7 @@ Please do share as much as you can, as vague messages/errors will make it harder
 
 **Can you help us with the coding?**
 
-Maybe, though it is not considered part of the normal boarding process. We are happy to answer questions and provide sample code, however if you require extensive coding the Partner team would need to discuss your needs. 
+Maybe, though it is not considered part of the normal on boarding process. We are happy to answer questions and provide sample code, however if you require extensive coding the Partner team would need to discuss your needs. 
 
 **Can anyone use the API?**
 
