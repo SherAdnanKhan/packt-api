@@ -4,7 +4,7 @@
 
 Put simply, APIs allow two or more systems to share data with each other, giving you new ways to consume and interact with Packt systems and data.  Our API's are real-time and centralize data from multiple Packt systems. 
 
-You likely to interact with APIs on a regular basis, however we do encourage to you to cache the data you receive from us. 
+You're likely to interact with APIs on a regular basis, however we do encourage to you to cache the data you receive from us. 
 
 The REST API follows JavaScript Object Notation (JSON) standards for formatting sent and received data. A principal advantage of JSON is that it helps make API queries easy to write, read, and parse by developers and machines.
 
@@ -18,9 +18,9 @@ That said, if you have specific requirements please do contact our Partners team
 
 **Are there any limits on using the API?**
 
-We do limit the amount of calls you make on our API, see [our Rate Limit](ratelimiting.md) documentation for details. If you want to go faster, please do contact our Partners team who can support your request.
+We do limit the amount of calls you make on our API, see [our Rate Limit](/docs/ratelimiting) documentation for details. If you want to go faster, please do contact our Partners team who can support your request.
 
-Your use of data is limited by the restrictions set out in our [Terms of Use](terms.md). 
+Your use of data is limited by the restrictions set out in our [Terms of Use](/docs/terms). 
 
 **I'm using a third-party service/wrapper and it is not working. Can you help?**
 

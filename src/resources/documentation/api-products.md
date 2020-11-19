@@ -20,19 +20,21 @@ Fetches all products available in our catalog
 
 ```json
 {
-"products":[
-    "id": "9781789956177",
-    "isbn13": "9781789956177",
-    "title": "Advanced Deep Learning with Python",
-    "publication_date": "2019-12-12T00:00:00.000Z",
-    "authors": [ "Ivan Vasilev" ],
-    "category": "Data",
-    "concepts": [ "Deep Learning" ],
-    "language": "python",
-    "language_version": "3.7",
-    "tool": "TensorFlow",
-    "vendor": "Apache"    
-],
+    "products" : [
+        {
+            "id": "9781789956177",
+            "isbn13": "9781789956177",
+            "title": "Advanced Deep Learning with Python",
+            "publication_date": "2019-12-12T00:00:00.000Z",
+            "authors": [ "Ivan Vasilev" ],
+            "category": "Data",
+            "concepts": [ "Deep Learning" ],
+            "language": "python",
+            "language_version": "3.7",
+            "tool": "TensorFlow",
+            "vendor": "Apache"    
+        }    
+    ]
 }
 ```
 
