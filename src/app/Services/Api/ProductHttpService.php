@@ -6,11 +6,15 @@ use App\Http\Resources\Product;
 use App\Services\Api\AuthorHttpService;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Client\RequestException;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class ProductHttpService extends HttpService
 {
+
+    use ValidatesRequests;
+
+
     const PRODUCT_SUMMARY_API = 'products/%s/summary';
     const PRODUCT_IMAGE_ORIGINAL_API = 'products/%s/cover/normal';
     const PRODUCT_IMAGE_SMALL_API = 'products/%s/cover/smaller';
