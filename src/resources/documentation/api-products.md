@@ -25,15 +25,13 @@ Fetches all products available in our catalog
     "isbn13": "9781789956177",
     "title": "Advanced Deep Learning with Python",
     "publication_date": "2019-12-12T00:00:00.000Z",
-    "authors": [
-            "name": "Ivan Vasilev",
-    ],
+    "authors": [ "Ivan Vasilev" ],
     "category": "Data",
     "concepts": [ "Deep Learning" ],
     "language": "python",
     "language_version": "3.7",
     "tool": "TensorFlow",
-    "vendor": ""    
+    "vendor": "Apache"    
 ],
 }
 ```
@@ -47,14 +45,19 @@ Fetches all products available in our catalog
 
 **Returned Values**
 
-| Field            | Description                         | Type             |
-| ---------------- | ----------------------------------- | ---------------- |
-| id               | Product ID                          | string           |
-| isbn13           | ISBN 13                             | integer          |
-| title            | The title of this product           | string           |
-| publication_date | When this product was published     | date             |
-| authors          | List of author names for this title | array of strings |
-| category         |                                     |                  |
+| Field            | Description                                                  | Type             |
+| ---------------- | ------------------------------------------------------------ | ---------------- |
+| id               | Product ID                                                   | string           |
+| isbn13           | ISBN 13                                                      | integer          |
+| title            | The title of this product                                    | string           |
+| publication_date | When this product was published                              | date             |
+| authors          | List of author names for this title (Optional)               | array of strings |
+| category         | The category this title sits under (eg Data, Cloud & Networking, Game Development, IoT & Hardware, Mobile, Programming, Security Web Development, Business & Other...) | string           |
+| concepts         | A list of concepts that this title covers, eg DevOps, Ecommerce etc.. (Optional) | array of strings |
+| language         | The primary language covered by this title , further languages may be covered, please use get product API for this. (eg Java, Python, etc) (Optional) | string           |
+| langauge_version | The version of the primary language covered by this title (Optional) | string           |
+| tool             | The primary tool or framework covered by this title, eg Flutter,  Grails etc (Optional) | string           |
+| vendor           | The primary vendor that relates to this title Eg Microsoft, IBM etc | string           |
 
 
 
