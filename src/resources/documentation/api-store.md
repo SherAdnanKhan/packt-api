@@ -16,3 +16,15 @@ includinng Print on Demand Status
 
 
 
+## Price `TODO`
+
+Get price of title given a country, default is US.`
+
+
+## Reviews `TODO`
+
+Get reviews score for this title
+
+Packt Rank
+
+Get Packt Rank
