@@ -10,7 +10,7 @@ You will need the **Product Information (PI)** permission to use this end point.
 
 ## List Products `ALPHA`
 
-Fetches all products in our catelogue
+Fetches all products available in our catalog
 
 **URL**
 
@@ -19,7 +19,23 @@ Fetches all products in our catelogue
 **Sample Response**
 
 ```json
-
+{
+"products":[
+    "id": "9781789956177",
+    "isbn13": "9781789956177",
+    "title": "Advanced Deep Learning with Python",
+    "publication_date": "2019-12-12T00:00:00.000Z",
+    "authors": [
+            "name": "Ivan Vasilev",
+    ],
+    "category": "Data",
+    "concepts": [ "Deep Learning" ],
+    "language": "python",
+    "language_version": "3.7",
+    "tool": "TensorFlow",
+    "vendor": ""    
+],
+}
 ```
 
 **Parameters**
@@ -31,11 +47,14 @@ Fetches all products in our catelogue
 
 **Returned Values**
 
-| Field | Description    | Type    |
-| ----- | -------------- | ------- |
-| id    | Product ID     | string  |
-| isbn  | ISBN 13        | integer |
-| ...   | more goes here |         |
+| Field            | Description                         | Type             |
+| ---------------- | ----------------------------------- | ---------------- |
+| id               | Product ID                          | string           |
+| isbn13           | ISBN 13                             | integer          |
+| title            | The title of this product           | string           |
+| publication_date | When this product was published     | date             |
+| authors          | List of author names for this title | array of strings |
+| category         |                                     |                  |
 
 
 
