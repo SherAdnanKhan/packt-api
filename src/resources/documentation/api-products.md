@@ -155,16 +155,23 @@ Retrieves product information about a single product
 | isbn13 and isbn10 | ISBN-13 and ISBN-10 identifiers, ISBN-10  if in doubt please always use ISBN-13, note the ISBN-13 is not guaranteed to be the same as the product id. | string |
 | isbns | ISBN variants of our published product types, eg print, ebook, video etc. | string |
 | title            | The title of this product                                    | string           |
-| tagline | Short description of this product (optional) |  |
-| pages | Number of pages found in the print version of this product (optional) |  |
+| product_type | Represents the type of product this is, eg Video, Book, Workshop etc. | string |
+| tagline | Short description of this product (optional) | string |
+| pages | Number of pages found in the print version of this product (optional) | number |
 | publication_date | When this product was published                              | date             |
-| authors          | List of author names for this title (Optional)               | array of strings |
-| category         | The category this title sits under (eg Data, Cloud & Networking, Game Development, IoT & Hardware, Mobile, Programming, Security Web Development, Business & Other...) | string           |
-| concepts         | A list of concepts that this title covers, eg DevOps, Ecommerce etc.. (Optional) | array of strings |
-| language         | The primary language covered by this title , further languages may be covered, please use get product API for this. (eg Java, Python, etc) (Optional) | string           |
-| langauge_version | The version of the primary language covered by this title (Optional) | string           |
-| tool             | The primary tool or framework covered by this title, eg Flutter,  Grails etc (Optional) | string           |
-| vendor           | The primary vendor that relates to this title Eg Microsoft, IBM etc | string           |
+| length | Calculated time to consume this content, if video is the video run length. (optional) | time |
+| learn | HTML bullet point list of key learnings from this title (optional) | string |
+| features | HTML bullet point list about features for this product (optional) | string |
+| description | HTML text with detailed description for this product (optional) | string |
+| authors          | List of authors for this title, including name, a short biography and a link to Packt author page. (Optional) | array of strings |
+| url | Link to product page on Packt site. | URL |
+| category         | The category this product sits under (eg Data, Cloud & Networking, Game Development, IoT & Hardware, Mobile, Programming, Security Web Development, Business & Other...) | string           |
+| concept         | Concepts are topic labels that denote what activities a product is teaching a user.  eg DevOps, Ecommerce etc.. | array of strings |
+| expertise | The level of concept expertise needed to consume this product. | string |
+| languages        | The languages covered by this title. (eg Java, Python, etc), languages may be marked as primary, have a version and an expertise level. (Optional) | Array map of strings |
+| tools | Broadly speaking, a Tool is the thing you use to work on a Concept. A product can be associated to a number of tools. A tool can also include a tool type, vendor, version, language and a level of expertise related to using that tool. (Optional) | Array map of strings |
+| jobroles          | A list of job roles that could be assigned to this product. An expertise level reflects the level of expertise for this job role against this product. | Array map of strings |
+| vendors          | A list of vendors that relate to this title Eg Microsoft, IBM etc (Optional) | Array map of strings |
 
 ## Cover Image `ALPHA`
 
@@ -182,5 +189,8 @@ Retrieves the cover image for the product.
 | ----- | ----------------------- | -------- |
 | id    | Product ID or ISBN code | N        |
 
+Large denotes our full size image for this cover, this is the highest resolution that this cover is available in.
 
+Small denotes a 240x300px thumbnail that represents this title.
 
+The cover image will be returned either as a jpg or png with the respective content-type set as image/jpeg or image/png respectively.
