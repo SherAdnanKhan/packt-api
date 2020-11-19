@@ -2,15 +2,19 @@
 
 namespace App\Services\Api;
 
+use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\Product;
-use App\Services\Api\AuthorHttpService;
-use GuzzleHttp\Client;
+use App\Http\Resources\ProductIndexCollection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Client\RequestException;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class ProductHttpService extends HttpService
 {
+
+    use ValidatesRequests;
+
+
     const PRODUCT_SUMMARY_API = 'products/%s/summary';
     const PRODUCT_IMAGE_ORIGINAL_API = 'products/%s/cover/normal';
     const PRODUCT_IMAGE_SMALL_API = 'products/%s/cover/smaller';
@@ -20,6 +24,31 @@ class ProductHttpService extends HttpService
      * @var \App\Services\Api\AuthorHttpService
      */
     private $authorHttpService;
+    protected $request;
+
+
+    public function getProductList(){
+
+        $max = ($this->request->get('offset') >= 100) ? '900' :  $this->request->get('offset');
+
+        $this->validate($this->request, [
+            'length' => 'integer|max:'.$max
+        ]);
+
+        $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
+            ->initIndex('store_prod_gb_products');
+
+        $results = $searchClient->search('*',  [
+            'hitsPerPage' => 100,
+            'offset' => $this->request->has('offset') ?  $this->request->get('offset') : 0,
+            'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
+        ]);
+
+        $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
+
+        return $data;
+
+    }
 
 
     /**
@@ -122,6 +151,11 @@ class ProductHttpService extends HttpService
         } catch (\Exception $e) {
             throw new ModelNotFoundException();
         }
+    }
+
+    public function setRequest($request){
+        $this->request = $request;
+        return $this;
     }
 
 }

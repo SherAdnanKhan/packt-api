@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\Product;
 use App\Services\Api\ProductHttpService;
 use App\Services\Api\AuthorHttpService;
@@ -18,6 +19,11 @@ class ProductController extends Controller
 {
 
     use LogTrait;
+
+
+    public function index(ProductHttpService $productHttpService, Request $request){
+        return $productHttpService->setRequest($request)->getProductList();
+    }
 
     /**
      * @param $product

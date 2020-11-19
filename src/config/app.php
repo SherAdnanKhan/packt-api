@@ -5,6 +5,10 @@ return [
     'support_email'=> env('SUPPORT_EMAIL','apisupport@packt.com'),
     'access_email'=> env('ACCESS_EMAIL','apiaccess@packt.com'),
 
+    'algolia_id' => env('ALGOLIA_ID', null),
+    'algolia_secret' => env('ALGOLIA_SECRET', null),
+    'algolia_index' => env('ALGOLIA_INDEX_NAME', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -164,7 +168,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-       
+
         /*
          * Package Service Providers...
          */
@@ -232,7 +236,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-       
+
     ],
 
 ];
