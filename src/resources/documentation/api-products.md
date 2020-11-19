@@ -28,7 +28,7 @@ Fetches all products available in our catalog
             "publication_date": "2019-12-12T00:00:00.000Z",
             "authors": [ "Ivan Vasilev" ],
             "category": "Data",
-            "concepts": [ "Deep Learning" ],
+            "concept": "Deep Learning",
             "language": "python",
             "language_version": "3.7",
             "tool": "TensorFlow",
@@ -55,7 +55,7 @@ Fetches all products available in our catalog
 | publication_date | When this product was published                              | date             |
 | authors          | List of author names for this title (Optional)               | array of strings |
 | category         | The category this title sits under (eg Data, Cloud & Networking, Game Development, IoT & Hardware, Mobile, Programming, Security Web Development, Business & Other...) | string           |
-| concepts         | A list of concepts that this title covers, eg DevOps, Ecommerce etc.. (Optional) | array of strings |
+| concept          | A list of concepts that this title covers, eg DevOps, Ecommerce etc.. (Optional) | array of strings |
 | language         | The primary language covered by this title , further languages may be covered, please use get product API for this. (eg Java, Python, etc) (Optional) | string           |
 | langauge_version | The version of the primary language covered by this title (Optional) | string           |
 | tool             | The primary tool or framework covered by this title, eg Flutter,  Grails etc (Optional) | string           |
@@ -83,6 +83,7 @@ Retrieves product information about a single product
         "ebook": "9781789952711"
     },
     "title": "Advanced Deep Learning with Python",
+    "product_type": "Book",
     "tagline": "Gain expertise in advanced deep learning domains such as neural networks, meta-learning, graph neural networks, and memory augmented neural networks using the Python ecosystem",
     "pages": 468,
     "publication_date": "2019-12-12T00:00:00.000Z",
@@ -98,26 +99,45 @@ Retrieves product information about a single product
         }
     ],
     "url": "https://packtpub.com/data/advanced-deep-learning-with-python",
-    "meta": {
-        "category": {
-            "category_name": "Data"
-        },
-        "concepts": {
-            "concept_name": "Deep Learning"
-        },
-        "language": {
-            "language_name": "python"
-        },
-        "languageVersion": {
-            "language_version_name": "3.7"
-        },
-        "tool": {
-            "tool_name": "TensorFlow"
-        },
-        "vendor": {
-            "vendor": ""
+
+    "category": "Data",
+    "concept":  "Deep Learning",
+    "expertise":  "Beginner",
+    
+    "languages": [
+        {
+            "name" : "Python",
+            "version" : "3.7",
+            "primary" : true,
+            "expertise" : "Beginner"
         }
-    }
+    ],
+    
+    "tools": [
+        {
+            "name" : "TensorFlow",
+            "vendor" : "Google",
+            "type" : "Framework",
+            "version" : "2.3",
+            "language" : "Python",
+            "expertise" : "Beginner",
+            "primary" : true
+        }
+    ],
+    
+    "jobroles": [
+        {
+            "name" : "Machine Learning Engineer",
+            "expertise" : "Intermediate"            
+        }
+    ],        
+
+    "vendors": [
+        {
+            "name" : "Apache",
+            "primary" : true
+        }
+    ],            
 }
 ```
 
@@ -146,7 +166,21 @@ Retrieves product information about a single product
 | tool             | The primary tool or framework covered by this title, eg Flutter,  Grails etc (Optional) | string           |
 | vendor           | The primary vendor that relates to this title Eg Microsoft, IBM etc | string           |
 
+## Cover Image `ALPHA`
 
+Retrieves the cover image for the product. 
+
+**URL**
+
+> GET /api/v1/products/{id}/cover/large
+>
+> GET /api/v1/products/{id}/cover/small
+
+**Parameters**
+
+| Field | Description             | Optional |
+| ----- | ----------------------- | -------- |
+| id    | Product ID or ISBN code | N        |
 
 
 
