@@ -29,24 +29,29 @@ class ProductHttpService extends HttpService
 
     public function getProductList(){
 
-        $max = ($this->request->get('offset') >= 100) ? '900' :  $this->request->get('offset');
 
-        $this->validate($this->request, [
-            'length' => 'integer|max:'.$max
-        ]);
+        try {
+            $max = ($this->request->get('offset') >= 100) ? '900' : $this->request->get('offset');
 
-        $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
-            ->initIndex('store_prod_gb_products');
+            $this->validate($this->request, [
+                'length' => 'integer|max:' . $max
+            ]);
 
-        $results = $searchClient->search('*',  [
-            'hitsPerPage' => 100,
-            'offset' => $this->request->has('offset') ?  $this->request->get('offset') : 0,
-            'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
-        ]);
+            $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
+                ->initIndex('store_prod_gb_products');
 
-        $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
+            $results = $searchClient->search('*', [
+                'hitsPerPage' => 100,
+                'offset' => $this->request->has('offset') ? $this->request->get('offset') : 0,
+                'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
+            ]);
 
-        return $data;
+            $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
+
+            return $data;
+        } catch(\Exception $e){
+            throw new ModelNotFoundException();
+        }
 
     }
 
