@@ -6,8 +6,8 @@ We rate limit our API based against a user session. Your rate limit will be depe
 
 If you exceed the rate limit we will return a `HTTP 429 Too Many Requests` response status code with the following payload.
 
-```
-   { "errorMessage" : "Rate Limit Exceeded." }
+```json
+{ "errorMessage" : "Rate Limit Exceeded." }
 ```
 
 We will also include in our headers the following rate limit information
@@ -18,3 +18,4 @@ X-RateLimit-Remaining: 3
 ```
 
 Please play nice, any attempts to circumvent rate limiting will result in your account being banned from our API platform.
+
