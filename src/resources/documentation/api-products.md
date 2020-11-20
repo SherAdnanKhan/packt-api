@@ -30,7 +30,6 @@ Fetches all products available in our catalog
             "category": "Data",
             "concept": "Deep Learning",
             "language": "python",
-            "language_version": "3.7",
             "tool": "TensorFlow",
             "vendor": "Apache"    
         }    
