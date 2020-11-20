@@ -64,3 +64,12 @@ services:
       - 8025:8025 # web ui 
     networks:
       - packt-api
+
+  logdna:
+    environment:
+      - LOGDNA_KEY=b55aa968c116697edc160b46b0af8d2e
+      - FILTER_NAME=site
+    image: logdna/logspout:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

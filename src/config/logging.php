@@ -96,6 +96,17 @@ return [
             'handler' => NullHandler::class,
         ],
 
+        'logdna' => [
+            'driver' => 'monolog',
+            'level' => 'debug',
+            'handler' => Butopea\Monolog\Handler\LogdnaHandler::class,
+            'handler_with' => [
+                'ingestion_key' => env('LOGDNA_KEY'),
+                'hostname' => env('LOGDNA_HOST'),
+            ],
+            'formatter' => 'default',  // ##### does not work without this!
+        ],
+
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
