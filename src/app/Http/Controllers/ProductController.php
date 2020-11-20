@@ -22,6 +22,9 @@ class ProductController extends Controller
 
 
     public function index(ProductHttpService $productHttpService, Request $request){
+
+        $this->logInfo('info', 'User has accessed Product List API', $request);
+
         return $productHttpService->setRequest($request)->getProductList();
     }
 

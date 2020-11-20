@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26a446023e98c72f461fa786829ecbfd",
+    "content-hash": "9575eb453a00f55b3942d78743fcaff7",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -244,6 +244,60 @@
                 }
             ],
             "time": "2020-08-18T23:57:15+00:00"
+        },
+        {
+            "name": "butopea/monolog-logdna",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/butopea/monolog-logdna.git",
+                "reference": "e608e08f235949323c0df24ecc807b464dfb4bc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/butopea/monolog-logdna/zipball/e608e08f235949323c0df24ecc807b464dfb4bc8",
+                "reference": "e608e08f235949323c0df24ecc807b464dfb4bc8",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": ">=1.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Butopea\\Monolog\\": "src/Monolog"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Vanheuverzwijn",
+                    "email": "nicolas.vanheu@gmail.com"
+                },
+                {
+                    "name": "Mohammad Tomaraei",
+                    "email": "mo@butopea.com"
+                }
+            ],
+            "description": "Logdna handler for Monolog",
+            "homepage": "http://github.com/butopea/monolog-logdna",
+            "keywords": [
+                "log",
+                "logdna",
+                "logging",
+                "psr-3"
+            ],
+            "support": {
+                "source": "https://github.com/butopea/monolog-logdna/tree/master"
+            },
+            "time": "2020-07-21T14:53:22+00:00"
         },
         {
             "name": "dasprid/enum",
