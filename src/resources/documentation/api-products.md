@@ -30,6 +30,7 @@ Fetches all products available in our catalog
             "category": "Data",
             "concept": "Deep Learning",
             "language": "python",
+            "language_version": "3.7",
             "tool": "TensorFlow",
             "vendor": "Apache"    
         }    
@@ -190,6 +191,6 @@ Retrieves the cover image for the product.
 
 Large denotes our full size image for this cover, this is the highest resolution that this cover is available in.
 
-Small denotes a 240x300px thumbnail that represents this title.
+Small denotes a 240x300px thumbnail cover image.
 
 The cover image will be returned either as a jpg or png with the respective content-type set as image/jpeg or image/png respectively.
