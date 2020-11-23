@@ -5,11 +5,10 @@ module.exports = {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './app/Http/Livewire/Documentation.php'
     ],
 
-    options: {
-        safelist: ['max-h-20']
-    },
+        whitelistPatterns: ['max-h-20'],
 
     theme: {
         extend: {
