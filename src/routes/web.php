@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Livewire\Docs;
 use App\Http\Livewire\Documentation;
@@ -18,26 +19,16 @@ use App\Http\Controllers\SendEmailController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [PagesController::class, 'index'])->name('home');
 
 Route::get('/docs/{route?}', [Documentation::class, 'render'])->name('documentation');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
 
-    Route::get('/dashboard', function(){
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/doc-overview', function(){
-        return view('docs');
-    });
+    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
 
    Route::get('/send-email',[SendEmailController::class,'index'])->name('send-email');
    Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email-post');
