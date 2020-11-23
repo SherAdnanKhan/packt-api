@@ -40,6 +40,6 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     });
 
    Route::get('/send-email',[SendEmailController::class,'index'])->name('send-email');
-   Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email');
+   Route::post('/send-email/send',[SendEmailController::class,'sendEmail'])->name('send-email-post');
 });
 
