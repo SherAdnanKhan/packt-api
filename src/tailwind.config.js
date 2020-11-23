@@ -7,6 +7,10 @@ module.exports = {
         './resources/views/**/*.blade.php',
     ],
 
+    options: {
+        safelist: ['max-h-20']
+    },
+
     theme: {
         extend: {
             fontFamily: {
