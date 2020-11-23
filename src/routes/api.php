@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['addAccessToken', 'auth:sanctum'], 'prefix' => 'v1'], function(){
 
-   Route::get('/user', function(Request $request) {
-       return $request->user();
-   });
-
    Route::get('test', [TestAPIController::class, 'index']);
 
    Route::apiResource('products', ProductController::class);
