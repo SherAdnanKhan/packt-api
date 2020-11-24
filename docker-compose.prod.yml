@@ -1,0 +1,47 @@
+version: '3'
+
+networks:
+  packt-api:
+
+services:
+  site:
+    image: nginx:stable-alpine
+    container_name: packt-api-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - packt-api
+    
+  php:
+    build:
+      context: ./php-app/
+      dockerfile: Dockerfile
+    container_name: packt-api-php
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - packt-api
+  
+  npm:
+    image: node:latest
+    container_name: npm
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: [ 'npm' ]
+
+  logdna:
+    environment:
+      - LOGDNA_KEY=b55aa968c116697edc160b46b0af8d2e
+      - FILTER_NAME=site
+    image: logdna/logspout:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

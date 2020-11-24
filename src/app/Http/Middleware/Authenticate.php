@@ -2,11 +2,15 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\LogTrait;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
 {
+
+    use LogTrait;
+
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
@@ -22,6 +26,7 @@ class Authenticate extends Middleware
 
     protected function unauthenticated($request, array $guards)
     {
+        $this->logInfo('warning', 'User has failed authentication', $request);
         throw new AuthenticationException(
             'Unauthenticated User.', $guards, $this->redirectTo($request)
         );

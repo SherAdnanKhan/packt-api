@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'logdna'],
             'ignore_exceptions' => false,
         ],
 
@@ -94,6 +94,17 @@ return [
         'null' => [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
+        ],
+
+        'logdna' => [
+            'driver' => 'monolog',
+            'level' => 'debug',
+            'handler' => Butopea\Monolog\Handler\LogdnaHandler::class,
+            'handler_with' => [
+                'ingestion_key' => env('LOGDNA_KEY'),
+                'hostname' => env('LOGDNA_HOST'),
+            ],
+            'formatter' => 'default',  // ##### does not work without this!
         ],
 
         'emergency' => [

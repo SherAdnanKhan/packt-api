@@ -2,14 +2,19 @@
 
 namespace App\Services\Api;
 
+use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\Product;
-use App\Services\Api\AuthorHttpService;
-use GuzzleHttp\Client;
+use App\Http\Resources\ProductIndexCollection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Client\RequestException;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class ProductHttpService extends HttpService
 {
+
+    use ValidatesRequests;
+
+
     const PRODUCT_SUMMARY_API = 'products/%s/summary';
     const PRODUCT_IMAGE_ORIGINAL_API = 'products/%s/cover/normal';
     const PRODUCT_IMAGE_SMALL_API = 'products/%s/cover/smaller';
@@ -19,6 +24,36 @@ class ProductHttpService extends HttpService
      * @var \App\Services\Api\AuthorHttpService
      */
     private $authorHttpService;
+    protected $request;
+
+
+    public function getProductList(){
+
+
+        try {
+            $max = ($this->request->get('offset') >= 100) ? '900' : $this->request->get('offset');
+
+            $this->validate($this->request, [
+                'length' => 'integer|max:' . $max
+            ]);
+
+            $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
+                ->initIndex('store_prod_gb_products');
+
+            $results = $searchClient->search('*', [
+                'hitsPerPage' => 100,
+                'offset' => $this->request->has('offset') ? $this->request->get('offset') : 0,
+                'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
+            ]);
+
+            $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
+
+            return $data;
+        } catch(\Exception $e){
+            throw new ModelNotFoundException();
+        }
+
+    }
 
 
     /**
@@ -32,7 +67,7 @@ class ProductHttpService extends HttpService
         $this->authorHttpService = $authorHttpService;
 
         $this->productData['summary'] = $this->getProductSummary($sku);
-//        $this->productData['images'] = $this->getProductImage($sku);
+        $this->productData['images'] = $this->getProductImage($sku);
         $this->productData['authors'] = $this->getAuthorInformation($this->productData['summary']['authors']);
 
         return Product::make($this->productData)->resolve();
@@ -48,7 +83,7 @@ class ProductHttpService extends HttpService
         try {
             return $this->process(sprintf(self::PRODUCT_SUMMARY_API, $sku))->json();
         } catch (\Exception $e) {
-            throw new NotFoundResourceException('Sorry, the product was not found', 404);
+            throw new ModelNotFoundException();
         }
     }
 
@@ -104,22 +139,28 @@ class ProductHttpService extends HttpService
      */
     private function getCoverImage(string $sku)
     {
-        if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
-            return [
-                'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
-                'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
-            ];
-        }
 
-        return false;
+            if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
+                return [
+                    'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
+                    'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
+                ];
+            }
+
+            return false;
     }
 
     private function getAuthorInformation($authors){
         try {
             return $this->authorHttpService->getAuthors($authors);
         } catch (\Exception $e) {
-            throw new NotFoundResourceException('Sorry, the author was not found', 404);
+            throw new ModelNotFoundException();
         }
+    }
+
+    public function setRequest($request){
+        $this->request = $request;
+        return $this;
     }
 
 }

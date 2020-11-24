@@ -57,8 +57,19 @@ services:
   mailhog:
     image: mailhog/mailhog
     container_name: mailhog
+    environment:
+      MH_UI_WEB_PATH: _/mail
     ports: 
       - 1025:1025 # smtp server
       - 8025:8025 # web ui 
     networks:
       - packt-api
+
+  logdna:
+    environment:
+      - LOGDNA_KEY=b55aa968c116697edc160b46b0af8d2e
+      - FILTER_NAME=site
+    image: logdna/logspout:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

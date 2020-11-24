@@ -1,26 +1,23 @@
-# Test
-
-`ALPHA` 
+# Test `ALPHA` 
 
 This is a test end point for you to point any monitoring systems you have against. This end point is also useful to test and see the access level assigned to your token.
 
 A token is required to call this end point.
 
-/api/v1/test
+**URL**
 
+> GET /api/v1/test
 
-
-
-
-
-
-
-
-Return values
-
-System OK
-
-Token OK 
-
-Token access values - Get a list of api allowed to access
+## Sample Response
+```json 
+{
+    "system": "OK",
+    "token": "OK",
+    "token_access": [
+        "TEST",
+        "PI"
+    ],
+    "token_last_used": "1 second ago"
+}
+```
 
