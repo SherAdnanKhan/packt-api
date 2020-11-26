@@ -13,6 +13,9 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
+
+
         @livewireStyles
 
         <!-- Scripts -->
