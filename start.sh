@@ -17,7 +17,7 @@ if [ -d src/storage ]; then
 
 fi
 
-if [ $1 == 'prod' ]; then
+if [ "$1" == "prod" ]; then
 docker-compose -f  docker-compose.prod.yml build
 docker-compose -f docker-compose.prod.yml up -d
 else
