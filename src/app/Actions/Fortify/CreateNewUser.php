@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Traits\LogTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
-
+    use LogTrait;
     /**
      * Create a newly registered user.
      *
@@ -26,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
 //	    'g-recaptcha-response' => 'required|captcha',
-		'g-recaptcha-response' => 'required|recaptchav3:register,0.5,'
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5,'
         ])->validate();
 
         return DB::transaction(function () use ($input) {

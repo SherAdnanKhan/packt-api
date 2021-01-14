@@ -37,6 +37,11 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::addTeamMembersUsing(AddTeamMember::class);
         Jetstream::deleteTeamsUsing(DeleteTeam::class);
         Jetstream::deleteUsersUsing(DeleteUser::class);
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            \App\Http\Responses\RegisterResponse::class
+        );
+
     }
 
     /**
@@ -55,6 +60,7 @@ class JetstreamServiceProvider extends ServiceProvider
             'ALLCONTENT',
             'STORE',
             'SUBS',
+            'SU'
         ])->description(__('Administrator users can perform any action.'));
 
         Jetstream::role('editor', __('Editor'), [

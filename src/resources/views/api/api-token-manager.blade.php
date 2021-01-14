@@ -35,6 +35,11 @@
         </x-slot>
 
         <x-slot name="actions">
+            <!-- Sanbox Token Checkbox -->
+            <div class="col-span-6 sm:col-span-4">
+                <input type="checkbox" class="form-checkbox" wire:model.defer="createApiTokenForm.sandboxtoken">
+                <label>Use As a Sandbox Token</label>
+            </div>
             <x-jet-action-message class="mr-3" on="created">
                 {{ __('Created.') }}
             </x-jet-action-message>

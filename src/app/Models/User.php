@@ -11,6 +11,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\NewAccessToken;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable implements MustVerifyEmailAlias
 {
@@ -59,4 +61,24 @@ class User extends Authenticatable implements MustVerifyEmailAlias
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Create a new personal access token for the user.
+     *
+     * @param string $name
+     * @param array $abilities
+     * @param bool $sandboxToken
+     * @return NewAccessToken
+     */
+    public function createToken(string $name, array $abilities = ['*'], bool $sandboxToken): NewAccessToken
+    {
+        $token = $this->tokens()->create([
+            'name' => $name,
+            'token' => hash('sha256', $plainTextToken = Str::random(40)),
+            'abilities' => $abilities,
+            'sandbox' => $sandboxToken,
+        ]);
+
+        return new NewAccessToken($token, $token->id.'|'.$plainTextToken);
+    }
 }

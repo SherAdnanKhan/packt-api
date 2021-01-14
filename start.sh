@@ -40,7 +40,7 @@ if [ $1 == 'prod' ]; then
 ./php-artisan.sh route:cache
 ./php-artisan.sh view:cache
 else
-./npm.sh run dev
+./npm.sh run development
 fi
 
 # Clear all caches for fresh start

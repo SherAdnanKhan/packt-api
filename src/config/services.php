@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'entitlement_url' => env('ENTITLEMENT_URL'),
+    'entitlement_key' => env('ENTITLEMENT_KEY'),
+
+
+
 ];

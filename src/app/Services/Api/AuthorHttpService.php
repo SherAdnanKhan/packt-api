@@ -9,11 +9,6 @@ use Symfony\Component\Translation\Exception\NotFoundResourceException;
 class AuthorHttpService extends HttpService
 {
 
-    public function getAuthorList()
-    {
-        dd($this->process()->json());
-    }
-
     public function getAuthors(array $authors)
     {
         try {

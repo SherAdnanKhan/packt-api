@@ -8,6 +8,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use App\Models\PersonalAccessToken;
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
                 ->subject('Verify Your Email Address!')
                 ->markdown('emails.verify', ['url' => $verifyUrl, 'color' => 'orange']);
         });
+
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
     }
 }

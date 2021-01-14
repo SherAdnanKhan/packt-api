@@ -1,14 +1,13 @@
-# Test `ALPHA` 
+# Test <sup>ALPHA</sup> <sub>GET</sub> 
 
 This is a test end point for you to point any monitoring systems you have against. This end point is also useful to test and see the access level assigned to your token.
 
 A token is required to call this end point.
+    
 
-**URL**
+> /api/v1/test
 
-> GET /api/v1/test
-
-## Sample Response
+#### Sample Response
 ```json 
 {
     "system": "OK",

@@ -22,10 +22,10 @@
                     </div>
 
                     <div id="sidebar"
-                         class="bg-gray-200 lg:inset-0 h-full bg-white z-90 border-b lg:-mb-16 lg:-mb-0 lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5   pb-6 lg:pt-16">
+                         class="bg-gray-200 lg:inset-0 h-full bg-white z-90 border-b lg:-mb-16 lg:-mb-0 lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5   pb-6 lg:pt-5">
                         <div id="navWrapper" class="h-full overflow-y-auto">
                             <nav
-                                class="px-4 pt-6 mt-5 overflow-y-auto text-base lg:text-sm lg:py-0 lg:pl-6 lg:pr-6 sticky?lg:h-(screen-16)">
+                                class="px-4 pt-6 mt-3 overflow-y-auto text-base lg:text-sm lg:py-0 lg:pl-6 lg:pr-6 sticky?lg:h-(screen-16)">
                                 {{$nav}}
                             </nav>
                         </div>
@@ -37,9 +37,12 @@
                             <div id="app" class="flex">
                                 <div class="pb-16 w-full pt-12 lg:pt-5">
                                     <div
-                                        class="markdown mb-6 px-6 max-w-100 mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-100">
-                                        <div class="items-center markdown-body">
-                                            {{ $content }}
+                                        class="markdown mb-6 px-6 max-w-100 mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-100 docs-body {{ (isset(Route::current()->parameters['route'])) ? Route::current()->parameters['route'] : false }}">
+                                        <div class="items-center markdown-body" x-data="dosomething()" x-init="initHighlight">
+
+
+{{ $content }}
+
                                         </div>
                                     </div>
                                 </div>
@@ -52,3 +55,16 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function dosomething() {
+        return {
+            show: false,
+            initHighlight() {
+                hljs.initHighlightingOnLoad();
+            }
+        }
+    }
+
+
+</script>

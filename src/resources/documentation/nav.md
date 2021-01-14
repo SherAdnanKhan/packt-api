@@ -9,6 +9,7 @@
 * API (v1) (Alpha)
    * [Test](api-test.md)
    * [Products](api-products.md)
+   * [Content](api-content.md)
 
    
    

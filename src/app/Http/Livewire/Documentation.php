@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\HtmlString;
@@ -33,7 +34,6 @@ class Documentation extends Component
 
     public function render($route = 'overview')
     {
-
         $document = $this->getHtmlFromMarkdown($route);
 
         $navigation = $this->setupNav('nav');
@@ -51,11 +51,20 @@ class Documentation extends Component
 
         $collapsible = str_replace(
             '<pre><code class="language-json">',
-            '<pre x-data="{show:false}" class="relative"><a @click="show=!show" class="absolute top-5 right-5 code-trigger"  x-text="show ? \'Collapse\' : \'Expand\'" href="#trigger">Expand</a><code :class="{\'h-full\': show, \'max-h-20\': !show }" class="language-json block max-h-20">',
+            '<pre x-data="{show:false}" class="relative json rounded block h-full text-xs font-mono border border-gray-200"><a @click="show=!show" class="absolute top-5 right-8 code-trigger"  x-text="show ? \'Collapse\' : \'Expand\'" href="#trigger">Expand</a><code :class="{\'h-full\': show, \'max-h-20\': !show }" class="language-json block max-h-20">',
             $string);
 
+        $blockquotes = str_replace('<blockquote>',
+            '<div class="relative url-field mt-2  py-1 px-5 bg-gray-100 rounded border border-gray-200"><span
+                                                        class="font-bold border-r text-gray-600 inline-flex bg-gray-200 border border-gray-200 absolute inset-y-0 left-0 px-3 pt-1 rounded-tl rounded-bl">URL</span><span class="pl-12">',
+        $collapsible
+        );
 
-        return new HtmlString($collapsible);
+        $blockquoteend = str_replace('</blockquote>', '</span></div>', $blockquotes);
+
+
+
+        return new HtmlString($blockquoteend);
     }
 
     private function setupNav($route)

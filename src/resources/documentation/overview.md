@@ -1,6 +1,5 @@
-# Packt API
+# Packt API <sup>ALPHA</sup>
 
-`ALPHA` 
 
 This is the documentation for the current version of our API, v1 (alpha).
 

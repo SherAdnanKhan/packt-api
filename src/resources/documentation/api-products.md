@@ -1,6 +1,6 @@
-# Products
+# Products <sup>ALPHA</sup>
 
-`ALPHA` 
+
 
 Provides access to data across products
 
@@ -8,15 +8,13 @@ Provides access to data across products
 
 You will need the **Product Information (PI)** permission to use this end point.
 
-## List Products `ALPHA`
+## List Products <sup>ALPHA</sup> <sub>GET</sub>
 
 Fetches all products available in our catalog
 
-**URL**
+> /api/v1/products
 
-> GET /api/v1/products
-
-**Sample Response**
+#### **Sample Response**
 
 ```json
 {
@@ -38,14 +36,14 @@ Fetches all products available in our catalog
 }
 ```
 
-**Parameters**
+#### **Parameters**
 
 | Field | Description                                               | Optional |
 | ----- | --------------------------------------------------------- | -------- |
 | start | Start position used for paginating order list. Default 0. | Y        |
 | limit | Number of products to return, default 100, max 10000      | Y        |
 
-**Returned Values**
+#### **Returned Values**
 
 | Field            | Description                                                  | Type             |
 | ---------------- | ------------------------------------------------------------ | ---------------- |
@@ -63,15 +61,13 @@ Fetches all products available in our catalog
 
 
 
-## Get a Product `ALPHA`
+## Get a Product <sup>ALPHA</sup> <sub>GET</sub>
 
-Retrieves product information about a single product
+Retrieves product information about a single product  
 
-**URL**
+> /api/v1/products/{id}
 
-> GET /api/v1/products/{id}
-
-**Sample Response**
+#### **Sample Response**
 
 ```json
 {
@@ -137,17 +133,17 @@ Retrieves product information about a single product
             "name" : "Apache",
             "primary" : true
         }
-    ],            
+    ]            
 }
 ```
 
-**Parameters**
+#### **Parameters**
 
 | Field | Description             | Optional |
 | ----- | ----------------------- | -------- |
 | id    | Product ID or ISBN code | N        |
 
-**Returned Values**
+#### **Returned Values**
 
 | Field | Description    | Type    |
 | ----- | -------------- | ------- |
@@ -173,22 +169,58 @@ Retrieves product information about a single product
 | jobroles          | A list of job roles that could be assigned to this product. An expertise level reflects the level of expertise for this job role against this product. | Array map of strings |
 | vendors          | A list of vendors that relate to this title Eg Microsoft, IBM etc (Optional) | Array map of strings |
 
-## Cover Image `ALPHA`
 
-Retrieves the cover image for the product. 
+## Product Pricing (RRP) <sup>ALPHA</sup> <sub>GET</sub>
 
-**URL**
+Retrieves RRP pricing for a given product and it's variations e.g Print, Ebook etc.
 
-> GET /api/v1/products/{id}/cover/large
->
-> GET /api/v1/products/{id}/cover/small
+> /api/v1/products/{id}/price/{code}
 
-**Parameters**
+#### **Sample Response**
+```json
+{
+    "prices": {
+        "print": {
+            "USD": "44.99",
+            "GBP": "33.99",
+            "EUR": "33.99",
+            "INR": "3101.99",
+            "AUD": "64.99"
+        },
+        "ebook": {
+            "USD": "31.99",
+            "GBP": "23.99",
+            "EUR": "23.99",
+            "INR": "2170.99",
+            "AUD": "45.99"
+        }
+    }
+}
+```
+
+#### **Parameters**
 
 | Field | Description             | Optional |
 | ----- | ----------------------- | -------- |
 | id    | Product ID or ISBN code | N        |
+| code    | ISO 4217 Currency Code, currently USD, GBP, EUR, INR & AUD are accepted. | Y        |
 
+
+## Cover Image <sup>ALPHA</sup> <sub>GET</sub>
+
+Retrieves the cover image for the product.
+
+> GET /api/v1/products/{id}/cover/large
+
+
+> GET /api/v1/products/{id}/cover/small
+
+#### **Parameters**
+
+| Field | Description             | Optional |
+| ----- | ----------------------- | -------- |
+| id    | Product ID or ISBN code | N        |
+  
 Large denotes our full size image for this cover, this is the highest resolution that this cover is available in.
 
 Small denotes a 240x300px thumbnail cover image.

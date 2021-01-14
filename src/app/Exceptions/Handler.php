@@ -65,7 +65,7 @@ class Handler extends ExceptionHandler
 
     {
         return $request->expectsJson()
-            ? response()->json(['errorMessage' => 'Invalid Token.'], 401)
+            ? response()->json(['errorMessage' => $exception->getMessage()], 401)
             : redirect()->guest($exception->redirectTo() ?? route('login'));
     }
 }

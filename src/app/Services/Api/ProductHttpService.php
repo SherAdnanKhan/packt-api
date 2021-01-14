@@ -20,10 +20,13 @@ class ProductHttpService extends HttpService
     const PRODUCT_IMAGE_SMALL_API = 'products/%s/cover/smaller';
 
     public $productData;
+
     /**
      * @var \App\Services\Api\AuthorHttpService
      */
+
     private $authorHttpService;
+
     protected $request;
 
 
@@ -78,7 +81,7 @@ class ProductHttpService extends HttpService
      * @param string $sku
      * @return array
      */
-    private function getProductSummary(string $sku)
+    public function getProductSummary(string $sku)
     {
         try {
             return $this->process(sprintf(self::PRODUCT_SUMMARY_API, $sku))->json();
@@ -117,37 +120,43 @@ class ProductHttpService extends HttpService
     /**
      * @param string $sku
      * @return array|false
-     * @throws RequestException
      */
     private function getSmallImage(string $sku)
     {
-
-        if ($this->process(sprintf(self::PRODUCT_IMAGE_SMALL_API, $sku))->successful()) {
-            return [
-                'url' => route('coverImages', ['sku' => $sku, 'size' => 'small']),
-                'image' => $this->process(sprintf(self::PRODUCT_IMAGE_SMALL_API, $sku))->body()
-            ];
+        try {
+            if ($this->process(sprintf(self::PRODUCT_IMAGE_SMALL_API, $sku))->successful()) {
+                return [
+                    'url' => route('coverImages', ['sku' => $sku, 'size' => 'small']),
+                    'image' => $this->process(sprintf(self::PRODUCT_IMAGE_SMALL_API, $sku))->body()
+                ];
+            }
+        } catch(\Exception $e){
+            throw new ModelNotFoundException();
         }
 
         return false;
+
     }
 
     /**
      * @param string $sku
-     * @return array|string|null
-     * @throws RequestException
+     * @return array
      */
-    private function getCoverImage(string $sku)
+    private function getCoverImage(string $sku): array
     {
-
+        try {
             if ($this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->successful()) {
                 return [
                     'url' => route('coverImages', ['sku' => $sku, 'size' => 'large']),
                     'image' => $this->process(sprintf(self::PRODUCT_IMAGE_ORIGINAL_API, $sku))->body()
                 ];
             }
+        } catch(\Exception $e){
+            throw new ModelNotFoundException();
+        }
 
-            return false;
+        return false;
+
     }
 
     private function getAuthorInformation($authors){

@@ -5,7 +5,8 @@ namespace App\Services\Api;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 
@@ -31,18 +32,14 @@ abstract class HttpService
      * @param string $uri
      * @param array|null $params
      * @param string $type
-     * @return \Illuminate\Http\Client\Response
-     * @throws \Illuminate\Http\Client\RequestException
+     * @param array $headers
+     * @return Response
+     *
      */
-    protected function process(string $uri = '', array $params = [], $type = 'get')
+    protected function process(string $uri = '', array $params = [], $type = 'get', $headers = [])
     {
-        return Http::retry(5, 100)->
-        {$type}($this->uri . $uri, $params)
-            ->throw();
-    }
-
-    protected function post(string $uri)
-    {
-        return Http::retry(5, 100)->post($this->uri.$uri)->throw();
+         return Http::withHeaders ($headers)->retry (5, 100)->
+            {$type}($this->uri . $uri, $params)
+                ->throw ();
     }
 }
