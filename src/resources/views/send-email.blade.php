@@ -45,7 +45,7 @@
             </label>
         </div>
         <div class="form-group text-right">
-            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+            <button class="bg-orange-500 hover:bg-orange-700 hover:border-orange-700 text-white font-bold py-2 px-4 border border-orange-500 rounded">
                 Send Support Request
             </button>        </div>
     </form>
