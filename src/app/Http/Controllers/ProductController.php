@@ -109,7 +109,11 @@ class ProductController extends Controller
     {
         try {
 
-            if(!$request->user()->tokenCan('ALLCONTENT') && !$request->user()->tokenCan('SU')) {
+            /**
+             * Temporarily commenting this method, we will bring it back later
+             * PLT-344
+             */
+//            if(!$request->user()->tokenCan('ALLCONTENT') && !$request->user()->tokenCan('SU')) {
                 $userProduct = UserProduct::where('user_id', auth()->user()->id)
                     ->where('product_id', $sku)->first();
 
@@ -118,7 +122,7 @@ class ProductController extends Controller
                         'errorMessage' => 'You dont have access to download the files of this Product.'
                     ], 403);
                 }
-            }
+//            }
 
 
             $this->logInfo('info', 'User has accessed Product File API ' . $sku, $request);
