@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\ProductFile;
 use App\Http\Resources\Product;
+use App\Models\UserPermission;
 use App\Models\UserProduct;
 use App\Services\Api\ProductHttpService;
 use App\Services\Api\AuthorHttpService;
@@ -109,11 +110,27 @@ class ProductController extends Controller
     {
         try {
 
-            /**
-             * Temporarily commenting this method, we will bring it back later
-             * PLT-344
-             */
-//            if(!$request->user()->tokenCan('ALLCONTENT') && !$request->user()->tokenCan('SU')) {
+            if($request->user()->tokenCan('ALLCONTENT') || $request->user()->tokenCan('SU')) {
+
+
+                $allContent = $request->user()->tokenCan('ALLCONTENT');
+                $su = $request->user()->tokenCan('SU');
+
+                $userPermissions = UserPermission::where('user_id', auth()->user()->id)->first();
+
+                if($userPermissions && is_array($userPermissions->abilities)) {
+                    if(!($su && in_array('SU', $userPermissions->abilities)) && !($allContent && in_array('ALLCONTENT', $userPermissions->abilities))) {
+                        return response()->json([
+                            'errorMessage' => 'You dont have access to download the files of this Product.'
+                        ], 403);
+                    }
+                } else {
+                    return response()->json([
+                        'errorMessage' => 'You dont have access to download the files of this Product.'
+                    ], 403);
+                }
+
+            } else {
                 $userProduct = UserProduct::where('user_id', auth()->user()->id)
                     ->where('product_id', $sku)->first();
 
@@ -122,7 +139,7 @@ class ProductController extends Controller
                         'errorMessage' => 'You dont have access to download the files of this Product.'
                     ], 403);
                 }
-//            }
+            }
 
 
             $this->logInfo('info', 'User has accessed Product File API ' . $sku, $request);
@@ -132,8 +149,15 @@ class ProductController extends Controller
 
             $filename = $sku . '.' . $type;
 
-            return response()->streamDownload(function () use ($url) {
-                echo file_get_contents($url['download_url']);
+            return response()->streamDownload(function() use ($url, $filename) {
+                // Open output stream
+                if ($file = fopen($url['download_url'], 'rb')) {
+                    while(!feof($file) and (connection_status()==0)) {
+                        print(fread($file, 1024*8));
+                        flush();
+                    }
+                    fclose($file);
+                }
             }, $filename);
 
         } catch (\Exception $e) {

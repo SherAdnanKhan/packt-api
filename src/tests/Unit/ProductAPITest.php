@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Models\User;
+use App\Models\UserPermission;
 use App\Models\UserProduct;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -129,6 +130,23 @@ class ProductAPITest extends TestCase
         UserProduct::factory()->create([
             'user_id' => $user->id,
             'product_id' => $sku
+        ]);
+
+        $response = $this->get(
+            route('productFiles', ['sku' => $sku, 'type' => 'epub']),
+            $this->headers
+        );
+        $response->assertStatus(200);
+    }
+
+    public function test_it_can_provide_content_deliverable_if_token_has_allcontent_permission_with_allcontent_user_permission()
+    {
+        $sku = '9780470185483';
+        $user = $this->createUserAndToken(['PI', 'ALLCONTENT']);
+
+        UserPermission::factory()->create([
+            'user_id' => $user->id,
+            'abilities' => ['ALLCONTENT']
         ]);
 
         $response = $this->get(
