@@ -1,4 +1,4 @@
-# Products <sup>ALPHA</sup>
+# Products  
 
 
 
@@ -8,7 +8,7 @@ Provides access to data across products
 
 You will need the **Product Information (PI)** permission to use this end point.
 
-## List Products <sup>ALPHA</sup> <sub>GET</sub>
+## List Products   <sub>GET</sub>
 
 Fetches all products available in our catalog
 
@@ -61,7 +61,7 @@ Fetches all products available in our catalog
 
 
 
-## Get a Product <sup>ALPHA</sup> <sub>GET</sub>
+## Get a Product   <sub>GET</sub>
 
 Retrieves product information about a single product  
 
@@ -170,7 +170,7 @@ Retrieves product information about a single product
 | vendors          | A list of vendors that relate to this title Eg Microsoft, IBM etc (Optional) | Array map of strings |
 
 
-## Product Pricing (RRP) <sup>ALPHA</sup> <sub>GET</sub>
+## Product Pricing (RRP)   <sub>GET</sub>
 
 Retrieves RRP pricing for a given product and it's variations e.g Print, Ebook etc.
 
@@ -206,7 +206,7 @@ Retrieves RRP pricing for a given product and it's variations e.g Print, Ebook e
 | code    | ISO 4217 Currency Code, currently USD, GBP, EUR, INR & AUD are accepted. | Y        |
 
 
-## Cover Image <sup>ALPHA</sup> <sub>GET</sub>
+## Cover Image   <sub>GET</sub>
 
 Retrieves the cover image for the product.
 

@@ -1,4 +1,4 @@
-# Test <sup>ALPHA</sup> <sub>GET</sub> 
+# Test   <sub>GET</sub> 
 
 This is a test end point for you to point any monitoring systems you have against. This end point is also useful to test and see the access level assigned to your token.
 

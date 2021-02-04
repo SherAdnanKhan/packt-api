@@ -6,7 +6,7 @@
    * [Rate Limiting](ratelimiting.md)
    * [Terms](terms.md)
 
-* API (v1) (Alpha)
+* API
    * [Test](api-test.md)
    * [Products](api-products.md)
    * [Content](api-content.md)

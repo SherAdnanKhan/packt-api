@@ -1,4 +1,4 @@
-# Content <sup>ALPHA</sup>
+# Content  
 
 Provides access based on entitlement to our product content. Entitlements are set up on a user-by-user basis and can be requested via the support form on the api dashboard or via the partners team.
 
@@ -8,7 +8,7 @@ You will need the **Content (CONTENT)** or **All Content (ALLCONTENT)** permissi
 
 ## 
 
-## Get Content <sup>ALPHA</sup> <sub>GET</sub>
+## Get Content   <sub>GET</sub>
 
 Allows you to download content files of our products in different formats, epub, pdf, video.
 
