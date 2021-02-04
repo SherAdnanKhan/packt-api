@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,12 +13,12 @@ class PricingAPITest extends TestCase
 
     public function testItCanGetPricingForProductByIsbn()
     {
+        $this->createUserAndToken(['PI']);
 
-        $user = User::factory()->create();
-
-        $this->actingAs($user);
-
-        $response = $this->getJson(route('productPrice', ['sku' => '9781789956177']));
+        $response = $this->getJson(
+            route('productPrice', ['sku' => '9781789956177']),
+            $this->headers
+        );
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -33,11 +32,9 @@ class PricingAPITest extends TestCase
     public function testItCanGetPricingForProductByIsbnAndIso()
     {
 
-        $user = User::factory()->create();
+         $this->createUserAndToken(['PI']);
 
-        $this->actingAs($user);
-
-        $response = $this->getJson(route('productPrice', ['sku' => '9781789956177', 'code' => 'GBP']));
+        $response = $this->getJson(route('productPrice', ['sku' => '9781789956177', 'code' => 'GBP']), $this->headers);
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -45,5 +42,4 @@ class PricingAPITest extends TestCase
         ]);
 
     }
-
 }

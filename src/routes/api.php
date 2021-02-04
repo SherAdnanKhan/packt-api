@@ -3,10 +3,6 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestAPIController;
-use App\Http\Controllers\ProductFileController;
-use App\Http\Resources\Product;
-use App\Services\Api\ProductHttpService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +31,7 @@ Route::group(['middleware' => ['addAccessToken', 'auth:sanctum'], 'prefix' => 'v
         Route::get('authors', [ProductController::class, 'getAuthors'])->name('productAuthors');
         Route::get('/files/{type}', [ProductController::class, 'getFiles'])
             ->name('productFiles')
-            ->middleware('accessTokenPermission:CONTENT');
+            ->middleware(['accessTokenPermission:CONTENT','entitlementAccess']);
         Route::get('price/{code?}', [ProductController::class, 'getPrice'])->name('productPrice');
     });
 

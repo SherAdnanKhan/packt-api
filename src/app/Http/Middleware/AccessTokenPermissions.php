@@ -22,10 +22,26 @@ class AccessTokenPermissions
      */
     public function handle(Request $request, Closure $next, string ...$accessPermission)
     {
+        $currentAccessToken = $request->user()->currentAccessToken();
+        $referer = strtolower($request->headers->get('referer'));
+        $allowedDomains = json_decode($currentAccessToken->domains);
+
+
+        if(!empty($allowedDomains) && !in_array('*', $allowedDomains) && !in_array($referer, $allowedDomains)) {
+
+
+            $this->logInfo('warning', 'API token does not have access of this host ' . $referer, $request);
+
+            throw new AuthenticationException(
+                'API token does not have access of this host ' . $referer
+            );
+
+        }
+
         /**
          * if token can SU, GOD MODE, they can do anything
          */
-        if($request->user()->tokenCan('SU')) {
+        if ($request->user()->tokenCan('SU')) {
             return $next($request);
         }
 
@@ -37,8 +53,8 @@ class AccessTokenPermissions
             /**
              * If access permission is CONTENT, check if token has ALLCONTENT access
              */
-            if($eachPermission === 'CONTENT') {
-                if($request->user()->tokenCan('ALLCONTENT')) {
+            if ($eachPermission === 'CONTENT') {
+                if ($request->user()->tokenCan('ALLCONTENT')) {
                     return $next($request);
                 }
             }
@@ -46,12 +62,12 @@ class AccessTokenPermissions
             /**
              * else, check the rest of the conditions
              */
-            if(!$request->user()->tokenCan($eachPermission)) {
+            if (!$request->user()->tokenCan($eachPermission)) {
 
-                $this->logInfo('warning', 'API token does not have permission to access '. $eachPermission, $request);
+                $this->logInfo('warning', 'API token does not have permission to access ' . $eachPermission, $request);
 
                 throw new AuthenticationException(
-                    'API token does not have permission to access '. $eachPermission. '.'
+                    'API token does not have permission to access ' . $eachPermission . '.'
                 );
             }
         }

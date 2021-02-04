@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\ProductFile;
-use App\Http\Resources\Product;
-use App\Models\UserPermission;
-use App\Models\UserProduct;
-use App\Services\Api\ProductHttpService;
 use App\Services\Api\AuthorHttpService;
 use App\Services\Api\PriceHttpService;
+use App\Services\Api\ProductFileHttpService;
+use App\Services\Api\ProductHttpService;
 use App\Traits\LogTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Client\RequestException;
-use Illuminate\Http\File;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Services\Api\ProductFileHttpService;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProductController extends Controller
@@ -109,39 +103,6 @@ class ProductController extends Controller
     )
     {
         try {
-
-            if($request->user()->tokenCan('ALLCONTENT') || $request->user()->tokenCan('SU')) {
-
-
-                $allContent = $request->user()->tokenCan('ALLCONTENT');
-                $su = $request->user()->tokenCan('SU');
-
-                $userPermissions = UserPermission::where('user_id', auth()->user()->id)->first();
-
-                if($userPermissions && is_array($userPermissions->abilities)) {
-                    if(!($su && in_array('SU', $userPermissions->abilities)) && !($allContent && in_array('ALLCONTENT', $userPermissions->abilities))) {
-                        return response()->json([
-                            'errorMessage' => 'You dont have access to download the files of this Product.'
-                        ], 403);
-                    }
-                } else {
-                    return response()->json([
-                        'errorMessage' => 'You dont have access to download the files of this Product.'
-                    ], 403);
-                }
-
-            } else {
-                $userProduct = UserProduct::where('user_id', auth()->user()->id)
-                    ->where('product_id', $sku)->first();
-
-                if(!$userProduct) {
-                    return response()->json([
-                        'errorMessage' => 'You dont have access to download the files of this Product.'
-                    ], 403);
-                }
-            }
-
-
             $this->logInfo('info', 'User has accessed Product File API ' . $sku, $request);
             $this->productFileData['location'] = $productFileHttpService->setRequest($request)->getFileData($request);
 

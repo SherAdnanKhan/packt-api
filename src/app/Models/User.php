@@ -70,13 +70,14 @@ class User extends Authenticatable implements MustVerifyEmailAlias
      * @param bool $sandboxToken
      * @return NewAccessToken
      */
-    public function createToken(string $name, array $abilities = ['*'], bool $sandboxToken): NewAccessToken
+    public function createToken(string $name, array $abilities = ['*'], bool $sandboxToken, array $domains = ['*']): NewAccessToken
     {
         $token = $this->tokens()->create([
             'name' => $name,
             'token' => hash('sha256', $plainTextToken = Str::random(40)),
             'abilities' => $abilities,
             'sandbox' => $sandboxToken,
+            'domains' => json_encode($domains)
         ]);
 
         return new NewAccessToken($token, $token->id.'|'.$plainTextToken);

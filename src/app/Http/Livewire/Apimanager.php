@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
 use Laravel\Jetstream\Jetstream;
-use Livewire\Component;
-use App\Models\User;
 
 class Apimanager extends ApiTokenManager
 {
+    public $domains = [];
+
    /* public function render()
     {
         return view('livewire.apimanager');
@@ -25,12 +24,14 @@ class Apimanager extends ApiTokenManager
         'name' => '',
         'permissions' => [],
         'sandboxtoken' => '',
+        'domains' => [],
     ];
 
     /**
      * Create a new API token.
      *
      * @return void
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function createApiToken()
     {
@@ -38,6 +39,7 @@ class Apimanager extends ApiTokenManager
 
         Validator::make([
             'name' => $this->createApiTokenForm['name'],
+
         ], [
             'name' => ['required', 'string', 'max:255'],
         ])->validateWithBag('createApiToken');
@@ -45,13 +47,19 @@ class Apimanager extends ApiTokenManager
         $this->displayTokenValue($this->user->createToken(
             $this->createApiTokenForm['name'],
             Jetstream::validPermissions($this->createApiTokenForm['permissions']),
-            $this->createApiTokenForm['sandboxtoken']
+            $this->createApiTokenForm['sandboxtoken'],
+            $this->createApiTokenForm['domains']
         ));
 
         $this->createApiTokenForm['name'] = '';
         $this->createApiTokenForm['permissions'] = Jetstream::$defaultPermissions;
         $this->createApiTokenForm['sandboxtoken'] = '';
+        $this->createApiTokenForm['domains'] = '';
 
         $this->emit('created');
+    }
+
+    public function removeInput($i){
+        unset($this->domains[$i]);
     }
 }

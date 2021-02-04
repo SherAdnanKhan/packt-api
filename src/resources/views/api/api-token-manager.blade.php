@@ -17,6 +17,28 @@
                 <x-jet-input-error for="name" class="mt-2" />
             </div>
 
+             <!-- Domain Name 
+             <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="domain" value="{{ __('Domain Name') }}" />
+                <x-jet-input id="domain" type="text" class="mt-1 block w-full" wire:model.defer="createApiTokenForm.domain" autofocus />
+                <x-jet-input-error for="domain" class="mt-2" />
+            </div>-->
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="domains" value="{{ __('Domain Name') }}" />
+                @foreach($domains + [count($domains) => ''] as $index => $domain)
+                <x-jet-input placeholder="Add Domain Name" id="domains_{{$index}}" type="text" 
+                             class="mt-1 block float-left" 
+                             value="{{ $domain }}"
+                             wire:model="domains.{{ $index }}"
+                             wire:model.defer="createApiTokenForm.domains.{{ $index }}" autofocus />
+                <div class="col-span-6 sm:col-span-4">
+                     <x-jet-button class="btn btn-danger btn-sm relative top-2 left-2 mb-4" wire:click.prevent="removeInput({{$index}})">remove</x-jet-button>
+                </div>
+                @endforeach
+                <x-jet-input-error for="domains" class="mt-2" />
+            </div>
+
             <!-- Token Permissions -->
             @if (Laravel\Jetstream\Jetstream::hasPermissions())
                 <div class="col-span-6">
