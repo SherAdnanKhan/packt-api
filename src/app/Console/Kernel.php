@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Jobs\APILogRetention;
+use App\Jobs\APILogSummary;
+use App\Jobs\CanaryTestJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,6 +28,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->job(new APILogRetention)->weekends();
+
+        $schedule->job(new APILogSummary())->daily();
+
+        $schedule->job(new CanaryTestJob())->cron('0 */8 * * *');
     }
 
     /**

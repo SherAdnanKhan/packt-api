@@ -27,8 +27,6 @@ class PricingAPITest extends TestCase
 
     }
 
-
-
     public function testItCanGetPricingForProductByIsbnAndIso()
     {
 

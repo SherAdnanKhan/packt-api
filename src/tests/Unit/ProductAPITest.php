@@ -21,6 +21,7 @@ class ProductAPITest extends TestCase
 
     use WithFaker, RefreshDatabase;
 
+
     /**
      * @var $headers array headers for API requests
      */

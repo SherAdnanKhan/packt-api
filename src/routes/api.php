@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['addAccessToken', 'auth:sanctum'], 'prefix' => 'v1'], function(){
 
-   Route::get('test', [TestAPIController::class, 'index'])->name('testEndpoint')->middleware('accessTokenPermission:TEST');
+   Route::get('test', [TestAPIController::class, 'index'])->name('test')->middleware('accessTokenPermission:TEST');
 
 
    Route::apiResource('products', ProductController::class)->middleware('accessTokenPermission:PI');
@@ -27,8 +27,11 @@ Route::group(['middleware' => ['addAccessToken', 'auth:sanctum'], 'prefix' => 'v
 
 
     Route::group(['prefix' => '/products/{sku}', 'middleware' => 'accessTokenPermission:PI'], function () {
+
         Route::get('/cover/{size}', [ProductController::class, 'getCoverImage'])->name('coverImages');
+
         Route::get('authors', [ProductController::class, 'getAuthors'])->name('productAuthors');
+
         Route::get('/files/{type}', [ProductController::class, 'getFiles'])
             ->name('productFiles')
             ->middleware(['accessTokenPermission:CONTENT','entitlementAccess']);

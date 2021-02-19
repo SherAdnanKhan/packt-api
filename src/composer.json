@@ -11,6 +11,7 @@
         "php": "^7.3",
         "algolia/algoliasearch-client-php": "^2.7",
         "butopea/monolog-logdna": "^2.1",
+        "danielme85/laravel-log-to-db": "^3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,7 +20,9 @@
         "laravel/jetstream": "^2.0",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^2.0"
+        "livewire/livewire": "^2.0",
+        "spatie/laravel-http-logger": "^1.7",
+        "spatie/laravel-webhook-server": "^1.11"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

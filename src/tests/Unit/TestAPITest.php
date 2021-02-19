@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,7 +25,7 @@ class TestAPITest extends TestCase
             false
         )->plainTextToken;
 
-        $response = $this->get(route('testEndpoint'), [
+        $response = $this->get(route('test'), [
             'Authorization' => 'Bearer '.$token
         ]);
 
@@ -36,5 +37,4 @@ class TestAPITest extends TestCase
             'token_last_used'
         ]);
     }
-
 }

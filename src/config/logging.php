@@ -110,6 +110,25 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'api' => [
+            'driver' => 'custom',
+            'via' => danielme85\LaravelLogToDB\LogToDbHandler::class,
+            //'model' => App\Model\Log::class, //Your own optional custom model
+            'level' => env('APP_LOG_LEVEL', 'debug'),
+            'name' => 'APILog',
+            'connection' => 'default',
+            'collection' => 'log',
+            'detailed' => true,
+            'queue' => false,
+            'queue_name' => '',
+            'queue_connection' => '',
+            'max_records' => false,
+            'max_hours' => false,
+            'processors' => [
+                //Monolog\Processor\HostnameProcessor::class
+                // ..
+            ]
+        ],
     ],
 
 ];

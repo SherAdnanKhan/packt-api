@@ -16,6 +16,9 @@
                         <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('api-dashboard') }}" :active="request()->routeIs('api-dashboard')">
+                            {{ __('API Dashboard') }}
+                        </x-jet-nav-link>
                     @endauth
                     <x-jet-nav-link href="{{ route('documentation') }}" :active="request()->routeIs('documentation')">
                         {{ __('Documentation') }}
@@ -69,6 +72,12 @@
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
+                                </x-jet-dropdown-link>
+                            @endif
+
+                            @if (config('webhook-server.webhook_menu') === true)
+                                <x-jet-dropdown-link href="{{ route('webhook') }}">
+                                    {{ __('Webhook') }}
                                 </x-jet-dropdown-link>
                             @endif
 
