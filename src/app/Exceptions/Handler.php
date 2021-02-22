@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
     public function render($request, \Throwable $throwable)
     {
         if ($throwable instanceof ValidationException) {
-            return response()->json(['errorMessage' => $throwable->getMessage()], 404);
+            return response()->json(['errorMessage' => 'The given data was invalid.'], 404);
         }
 
         if ($throwable instanceof ModelNotFoundException) {
