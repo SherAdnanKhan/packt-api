@@ -54,7 +54,6 @@ class ProductHttpService extends HttpService
 
             return $data;
         } catch(\Exception $e){
-            dd($e->getMessage());
             throw new ModelNotFoundException();
         }
 
