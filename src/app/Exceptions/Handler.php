@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
@@ -42,6 +43,9 @@ class Handler extends ExceptionHandler
 
     public function render($request, \Throwable $throwable)
     {
+        if ($throwable instanceof ValidationException) {
+            return response()->json(['errorMessage' => 'The given data was invalid.'], 404);
+        }
 
         if ($throwable instanceof ModelNotFoundException) {
             return response()->json(['errorMessage' => 'Resource not found.'], 404);
