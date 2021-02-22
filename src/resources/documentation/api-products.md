@@ -41,7 +41,7 @@ Fetches all products available in our catalog
 | Field | Description                                               | Optional |
 | ----- | --------------------------------------------------------- | -------- |
 | start | Start position used for paginating order list. Default 0. | Y        |
-| limit | Number of products to return, default 100, max 10000      | Y        |
+| limit | Number of products to return, default 100, max 1000      | Y        |
 
 #### **Returned Values**
 

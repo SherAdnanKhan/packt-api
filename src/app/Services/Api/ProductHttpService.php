@@ -8,6 +8,7 @@ use App\Http\Resources\ProductIndexCollection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Validation\ValidationException;
 
 class ProductHttpService extends HttpService
 {
@@ -30,15 +31,13 @@ class ProductHttpService extends HttpService
     protected $request;
 
 
-    public function getProductList(){
-
-
+    public function getProductList()
+    {
         try {
-//            $max = ($this->request->get('start') >= 100) ? '900' : $this->request->get('start');
-//
-//            $this->validate($this->request, [
-//                'limit' => 'integer|max:' . $max
-//            ]);
+
+            $this->validate($this->request, [
+                'limit' => 'integer|max:1000'
+            ]);
 
             $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
                 ->initIndex('store_prod_gb_products');
@@ -53,6 +52,8 @@ class ProductHttpService extends HttpService
 
 
             return $data;
+        } catch (ValidationException $e) {
+            throw $e;
         } catch(\Exception $e){
             throw new ModelNotFoundException();
         }
