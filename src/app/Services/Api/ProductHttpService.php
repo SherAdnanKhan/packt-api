@@ -34,25 +34,27 @@ class ProductHttpService extends HttpService
 
 
         try {
-            $max = ($this->request->get('offset') >= 100) ? '900' : $this->request->get('offset');
-
-            $this->validate($this->request, [
-                'length' => 'integer|max:' . $max
-            ]);
+//            $max = ($this->request->get('start') >= 100) ? '900' : $this->request->get('start');
+//
+//            $this->validate($this->request, [
+//                'limit' => 'integer|max:' . $max
+//            ]);
 
             $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
                 ->initIndex('store_prod_gb_products');
 
             $results = $searchClient->search('*', [
                 'hitsPerPage' => 100,
-                'offset' => $this->request->has('offset') ? $this->request->get('offset') : 0,
+                'offset' => $this->request->has('start') ? $this->request->get('start') : 0,
                 'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
             ]);
 
             $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
 
+
             return $data;
         } catch(\Exception $e){
+            dd($e->getMessage());
             throw new ModelNotFoundException();
         }
 
