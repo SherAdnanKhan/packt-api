@@ -43,26 +43,28 @@ class Handler extends ExceptionHandler
 
     public function render($request, \Throwable $throwable)
     {
-        if ($throwable instanceof ValidationException) {
-            return response()->json(['errorMessage' => 'The given data was invalid.'], 404);
-        }
-
-        if ($throwable instanceof ModelNotFoundException) {
-            return response()->json(['errorMessage' => 'Resource not found.'], 404);
-        }
-
-        if($throwable instanceof ThrottleRequestsException){
-            return response()->json(['errorMessage' => 'Rate Limit Exceeded.'], 429);
-        }
-
+        /**
+         * For API routes only
+         */
         if($request->is('api/*')){
             if ($throwable instanceof NotFoundHttpException) {
                 return route('fallback');
             }
+
+            if ($throwable instanceof ValidationException) {
+                return response()->json(['errorMessage' => 'The given data was invalid.'], 404);
+            }
+
+            if ($throwable instanceof ModelNotFoundException) {
+                return response()->json(['errorMessage' => 'Resource not found.'], 404);
+            }
+
+            if($throwable instanceof ThrottleRequestsException) {
+                return response()->json(['errorMessage' => 'Rate Limit Exceeded.'], 429);
+            }
         }
 
         return parent::render($request, $throwable);
-
     }
 
     protected function unauthenticated($request, AuthenticationException $exception)
