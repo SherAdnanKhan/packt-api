@@ -35,7 +35,7 @@ class APILogWriter implements LogWriter
         $this->httpStatusText = config('endpoints.httpStatusText');
 
         $routeName = $request->route()->getName();
-        $message = auth()->user()->id;
+        $message = $request->user()->id;
         $context = [
             'endpoint' => $request->getPathInfo(),
             'method' => $request->getMethod(),
