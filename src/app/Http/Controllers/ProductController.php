@@ -15,6 +15,7 @@ use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ProductController extends Controller
@@ -27,7 +28,12 @@ class ProductController extends Controller
 
         $this->logInfo('info', 'User has accessed Product List API', $request);
 
-        return $productHttpService->setRequest($request)->getProductList();
+        return Cache::remember('allproducts_'.$request->get('page').'-'.$request->user()->id.'-'.$request->get('limit') ?? '', 43200, function () use ($productHttpService, $request) {
+            $response = $productHttpService->setRequest($request)->getProductList()->toArray();
+            $response['products'] = $response['data'];
+            unset($response['data'], $response['links']);
+            return response()->json($response);
+        });
     }
 
     /**

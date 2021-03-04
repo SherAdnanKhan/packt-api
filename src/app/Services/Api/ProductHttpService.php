@@ -5,9 +5,13 @@ namespace App\Services\Api;
 use Algolia\AlgoliaSearch\SearchClient;
 use App\Http\Resources\Product;
 use App\Http\Resources\ProductIndexCollection;
+use App\Http\Responses\ProductResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Client\RequestException;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
 class ProductHttpService extends HttpService
@@ -42,16 +46,14 @@ class ProductHttpService extends HttpService
             $searchClient = SearchClient::create(config('app.algolia_id'), config('app.algolia_secret'))
                 ->initIndex('store_prod_gb_products');
 
-            $results = $searchClient->search('*', [
-                'hitsPerPage' => 100,
-                'offset' => $this->request->has('start') ? $this->request->get('start') : 0,
-                'length' => $this->request->has('limit') ? $this->request->get('limit') : 100
+            $results = $searchClient->browseObjects(['query' => '*',
+                'hitsPerPage' => 2000,
             ]);
 
-            $data = ProductIndexCollection::make(collect($results['hits']))->resolve();
+            $data = ProductIndexCollection::make(collect($results))->resolve();
 
+            return  $this->paginate($data['products'], $this->request->get('limit') ?? 100, $this->request->get('page'), ['path' => $this->request->url()]);
 
-            return $data;
         } catch (ValidationException $e) {
             throw $e;
         } catch(\Exception $e){
@@ -60,6 +62,13 @@ class ProductHttpService extends HttpService
 
     }
 
+
+    public function paginate($items, $perPage = 100, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
 
     /**
      * @param string $sku

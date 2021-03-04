@@ -43,20 +43,6 @@ class ProductAPITest extends TestCase
         ]);
     }
 
-    public function test_it_throws_errors_if_cant_retrieve_all_products()
-    {
-        Config::set('app.algolia_id', 'throwanerror');
-
-        $this->createUserAndToken(['PI']);
-
-        $response = $this->getJson(
-            route('products.index'),
-            $this->headers
-        );
-
-        $response->assertNotFound();
-
-    }
 
     public function test_it_can_get_one_product_by_sku()
     {

@@ -18,6 +18,17 @@ Fetches all products available in our catalog
 
 ```json
 {
+    "current_page": 1,
+    "first_page_url": "https://api.packt.com/api/v1/products?page=1",
+    "from": 1,
+    "last_page": 91,
+    "last_page_url": "https://api.packt.com/api/v1/products?page=91",
+    "next_page_url": "https://api.packt.com/api/v1/products?page=2",
+    "path": "https://api.packt.com/api/v1/products",
+    "per_page": 100,
+    "prev_page_url": null,
+    "to": 100,
+    "total": 9018,
     "products" : [
         {
             "id": "9781789956177",
@@ -40,8 +51,8 @@ Fetches all products available in our catalog
 
 | Field | Description                                               | Optional |
 | ----- | --------------------------------------------------------- | -------- |
-| start | Start position used for paginating order list. Default 0. | Y        |
-| limit | Number of products to return, default 100, max 1000      | Y        |
+| page | Provide a page param to cycle through further results | Y        |
+| limit | Number of products to return, default 100, max 10000      | Y        |
 
 #### **Returned Values**
 

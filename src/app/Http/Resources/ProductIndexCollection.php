@@ -19,8 +19,8 @@ class ProductIndexCollection extends ResourceCollection
         return [
             'products' => $this->resource->map(function($row){
                return [
-                   'id' => $row['isbn'],
-                   'isbn13' => $row['isbn'],
+                   'id' => $row['isbn'] ?? '',
+                   'isbn13' => $row['isbn'] ?? '',
                    'title' => $row['name'],
                    'publication_date' => $row['date_of_publication'],
                    'authors' => explode(',', $row['authors']),
